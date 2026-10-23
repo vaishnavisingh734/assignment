@@ -1,0 +1,289 @@
+Q43-Recreate a simple reference landing page using both Grid and Flexbox appropriately
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q43 - Reference Landing Page using Grid + Flexbox - Vaishnavi Singh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary:#0F2C61; --accent:#FF6B35; --bg:#F8F9FA; --surface:#fff; --border:#DEE2E6; --text:#212529; --text-light:#6C757D; }
+        *{margin:0; padding:0; box-sizing:border-box;}
+        body{font-family:Inter, sans-serif; background:var(--bg); color:var(--text);}
+        h1,h2,h3{font-family:Poppins, sans-serif; color:var(--primary);}
+
+        /* ========== Q43 - WHEN TO USE WHAT ========== 
+           GRID for: Page layout (2D - rows + columns), Overall structure
+           FLEX for: Components inside (1D - row OR column), Alignment, Content
+        */
+
+        /* PAGE LAYOUT - GRID (2D) */
+        .page {
+            display: grid; /* GRID FOR PAGE LAYOUT */
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto;
+            grid-template-areas:
+                "header"
+                "hero"
+                "features"
+                "products"
+                "footer";
+            gap: 0;
+            min-height: 100vh;
+        }
+        .page-header { grid-area: header; }
+        .page-hero { grid-area: hero; }
+        .page-features { grid-area: features; }
+        .page-products { grid-area: products; }
+        .page-footer { grid-area: footer; }
+
+        /* HEADER - FLEX INSIDE GRID */
+        .page-header {
+            background: var(--primary);
+            padding: 12px 24px;
+            display: flex; /* FLEX FOR HEADER COMPONENT */
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .logo { display:flex; align-items:center; gap:10px; color:white; font-family:Poppins; font-weight:700; }
+        .logo-img { width:32px; height:32px; border-radius:50%; background:white; border:2px solid var(--accent); }
+        .nav { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+        .nav a { color:#dbe2f0; text-decoration:none; font-family:Poppins; font-size:12px; padding:6px 12px; border-radius:20px; }
+        .nav a.active, .nav a:hover { background:var(--accent); color:white; }
+
+        /* HERO - GRID FOR 2 COLUMNS, FLEX INSIDE FOR CONTENT STACK */
+        .page-hero {
+            background: white;
+            padding: 40px 24px;
+            display: grid; /* GRID FOR HERO LAYOUT - 2 columns */
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .hero-content {
+            display: flex; /* FLEX FOR STACKING CONTENT VERTICALLY */
+            flex-direction: column;
+            gap: 14px;
+        }
+        .badge { display:inline-block; background:#fff2ed; color:var(--accent); border:1px solid #ffd8c2; font-size:11px; font-family:Poppins; padding:5px 12px; border-radius:20px; width:fit-content; }
+        .hero-content h1 { font-size:38px; line-height:1.15; }
+        .hero-content h1 span { color:var(--accent); }
+        .hero-content p { color:var(--text-light); line-height:1.6; font-size:14px; }
+        .hero-btns { display:flex; gap:10px; flex-wrap:wrap; } /* FLEX FOR BUTTON ROW */
+        .btn { padding:10px 18px; border-radius:25px; font-family:Poppins; font-size:12px; text-decoration:none; display:inline-block; }
+        .btn-primary{background:var(--primary); color:white;} .btn-accent{background:var(--accent); color:white;}
+        .hero-stats { display:flex; gap:20px; flex-wrap:wrap; } /* FLEX FOR STATS ROW */
+        .stat b{font-family:Poppins; font-size:20px; color:var(--primary); display:block;} .stat span{font-size:11px; color:var(--text-light);}
+        .hero-visual { display:flex; justify-content:center; align-items:center; } /* FLEX FOR CENTERING IMAGE */
+        .visual-box { width:100%; max-width:380px; aspect-ratio:1/1; background:linear-gradient(135deg, var(--primary), #1a4a9c); border-radius:20px; display:flex; align-items:center; justify-content:center; box-shadow:0 20px 40px rgba(15,44,97,0.25); }
+        .visual-box img { width:75%; height:75%; border-radius:50%; border:4px solid white; background:white; object-fit:cover; }
+
+        /* FEATURES - GRID FOR CARDS LAYOUT, FLEX INSIDE CARD */
+        .page-features {
+            background: var(--bg);
+            padding: 30px 24px;
+        }
+        .section-inner { max-width:1100px; margin:0 auto; }
+        .section-head { text-align:center; margin-bottom:18px; }
+        .feature-grid {
+            display: grid; /* GRID FOR FEATURE CARDS - auto-fit responsive */
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        .feature-card {
+            background: white;
+            padding: 18px;
+            border-radius:10px;
+            border:1px solid var(--border);
+            display: flex; /* FLEX FOR CARD INTERNAL LAYOUT - column */
+            flex-direction: column;
+            gap: 10px;
+        }
+        .icon { width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; }
+        .feature-card p { font-size:12px; color:var(--text-light); line-height:1.5; }
+        .feature-card a { font-size:12px; font-family:Poppins; font-weight:600; margin-top:auto; }
+
+        /* PRODUCTS - GRID FOR PRODUCT LAYOUT, FLEX INSIDE */
+        .page-products {
+            background: white;
+            padding: 30px 24px;
+        }
+        .product-grid {
+            display: grid; /* GRID FOR PRODUCTS - auto-fit */
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .p-card {
+            border:1px solid var(--border); border-radius:10px; overflow:hidden;
+            display: flex; /* FLEX FOR CARD - column */
+            flex-direction: column;
+            background:white;
+            transition:0.3s;
+        }
+        .p-card:hover{transform:translateY(-3px); box-shadow:0 8px 16px rgba(0,0,0,0.08);}
+        .p-img { height:130px; background:#fff8f0; display:flex; align-items:center; justify-content:center; }
+        .p-img img { max-width:65%; max-height:65%; object-fit:contain; }
+        .p-body { padding:12px; display:flex; flex-direction:column; gap:4px; flex:1; }
+        .p-body .cat{font-size:9px; color:var(--text-light); text-transform:uppercase; font-family:Poppins;}
+        .p-body .title{font-size:13px; color:var(--primary);}
+        .price-row { display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:8px; border-top:1px solid var(--border); } /* FLEX FOR PRICE ROW */
+        .price b{font-family:Poppins; font-size:13px;}
+
+        /* FOOTER - GRID FOR COLUMNS, FLEX INSIDE COLUMNS */
+        .page-footer {
+            background: var(--primary);
+            color: white;
+            padding: 24px;
+            display: grid; /* GRID FOR FOOTER COLUMNS */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .footer-col { display:flex; flex-direction:column; gap:8px; } /* FLEX FOR FOOTER COLUMN STACK */
+        .footer-col h4 { color:white; font-size:13px; }
+        .footer-col a, .footer-col p { color:#a8b9d9; font-size:11px; text-decoration:none; }
+
+        /* RESPONSIVE - GRID AREA CHANGES */
+        @media(max-width:900px){
+            .page-hero { grid-template-columns:1fr; text-align:center; }
+            .hero-content { align-items:center; }
+            .hero-stats { justify-content:center; }
+        }
+        @media(max-width:600px){
+            .page-header { flex-direction:column; align-items:flex-start; }
+        }
+
+        .info { max-width:1100px; margin:20px auto; background:white; padding:18px; border-radius:10px; border-left:5px solid var(--accent); }
+        .code { background:#212121; color:#e0e0e0; padding:12px; border-radius:6px; font-family:monospace; font-size:11px; overflow:auto; margin-top:10px; white-space:pre-wrap; }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+
+        <header class="page-header">
+            <div class="logo"><img src="image.png.png" alt="Vaishnavi Singh Logo" class="logo-img"> Vaishnavi Singh | Q43 Grid + Flexbox Reference Landing</div>
+            <nav class="nav">
+                <a href="assignment35.html">Q35 Flex Only</a>
+                <a href="assignment40.html">Q40 Grid Only</a>
+                <a href="#" class="active">Q43 Both Grid+Flex - This Reference</a>
+                <a href="tel:8127780277" style="background:var(--accent); color:white;">8127780277</a>
+            </nav>
+        </header>
+
+        <section class="page-hero">
+            <div class="hero-content">
+                <span class="badge">Q43 - RECREATE REFERENCE LANDING PAGE USING BOTH GRID AND FLEXBOX APPROPRIATELY - Vaishnavi Singh</span>
+                <h1>Reference Landing <span>Grid + Flexbox</span> Together</h1>
+                <p>This is reference landing page recreated using both Grid and Flexbox appropriately. Grid for page layout (header, hero, features, products, footer areas) because Grid is 2D. Flexbox inside for components (navbar row, hero content column, button row, stats row, card column, price row) because Flex is 1D. Best of both. No framework.</p>
+                <div class="hero-btns">
+                    <a href="assignment40.html" class="btn btn-primary">Q40 Grid Only Project →</a>
+                    <a href="assignment35.html" class="btn btn-accent">Q35 Flex Only Project →</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat"><b>Grid</b><span>Page Layout 2D</span></div>
+                    <div class="stat"><b>Flex</b><span>Components 1D</span></div>
+                    <div class="stat"><b>Q43</b><span>Both Together</span></div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="visual-box"><img src="image.png.png" alt="Vaishnavi Singh Q43 Grid Flexbox Reference Landing Page"></div>
+            </div>
+        </section>
+
+        <section class="page-features">
+            <div class="section-inner">
+                <div class="section-head">
+                    <h2>Grid vs Flexbox - When to Use What (Q43 Rule)</h2>
+                    <p style="font-size:13px; color:var(--text-light);">Grid for layout, Flex for components - Reference rule followed in this page</p>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="icon" style="background:#eef2ff; color:var(--primary);">⊞</div>
+                        <h3>Grid - Page Layout - 2D</h3>
+                        <p>Used for: Overall page grid-template-areas, Hero 2 columns, Feature grid auto-fit, Product grid auto-fit, Footer columns. Because Grid controls rows AND columns.</p>
+                        <a href="#" style="color:var(--primary);">Used in: .page, .page-hero grid, .feature-grid, .product-grid, .page-footer</a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon" style="background:#fff2ed; color:var(--accent);">⇔</div>
+                        <h3>Flexbox - Components - 1D</h3>
+                        <p>Used for: Navbar space-between, Hero content column, Button row, Stats row, Card column layout, Price row space-between, Footer column stack. Because Flex controls row OR column.</p>
+                        <a href="#" style="color:var(--accent);">Used in: .page-header flex, .hero-content flex, .hero-btns, .price-row, .p-body</a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon" style="background:#e8f5e9; color:#2e7d32;">★</div>
+                        <h3>Q43 - Both Appropriately - Reference</h3>
+                        <p>This landing page is reference example: Grid for macro layout (sections), Flex for micro layout (inside sections). Industry standard - Airbnb, Netflix, Amazon use same.</p>
+                        <a href="#" style="color:#2e7d32;">This Page = Q43 Reference Landing Page - Grid + Flex Together</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-products">
+            <div class="section-inner">
+                <div class="section-head" style="text-align:left; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+                    <h2>Products - Grid Layout + Flex Inside Cards</h2>
+                    <span style="font-size:11px; background:#eef2ff; color:var(--primary); padding:5px 10px; border-radius:20px; font-family:Poppins;">Outer: Grid auto-fit | Inner: Flex column + Flex price row</span>
+                </div>
+                <div class="product-grid">
+                    <div class="p-card"><div class="p-img"><img src="image.png.png" alt="Q35 Flex"></div><div class="p-body"><div class="cat">Q35 Flex Only</div><div class="title">Finished Flexbox Landing - Flex Only</div><div class="price-row"><div class="price"><b>Flex</b></div><a href="assignment35.html" class="btn btn-primary" style="padding:5px 10px; font-size:10px;">View Flex Only</a></div></div></div>
+                    <div class="p-card"><div class="p-img"><img src="image.png.png" alt="Q40 Grid"></div><div class="p-body"><div class="cat">Q40 Grid Only</div><div class="title">Finished Grid Project - Grid Only</div><div class="price-row"><div class="price"><b>Grid</b></div><a href="assignment40.html" class="btn btn-primary" style="padding:5px 10px; font-size:10px;">View Grid Only</a></div></div></div>
+                    <div class="p-card" style="border:2px solid var(--accent);"><div class="p-img"><img src="image.png.png" alt="Q43 Both"></div><div class="p-body"><div class="cat">Q43 Both - This</div><div class="title">Reference Landing - Grid + Flex Both Appropriately</div><div class="price-row"><div class="price"><b>Both</b></div><a href="assignment43.html" class="btn btn-accent" style="padding:5px 10px; font-size:10px;">You Are Here - Both</a></div></div></div>
+                    <div class="p-card"><div class="p-img"><img src="image.png.png" alt="Q41 Breakpoints"></div><div class="p-body"><div class="cat">Q41-Q42 Responsive</div><div class="title">Breakpoints + Audit Fix - Responsive</div><div class="price-row"><div class="price"><b>Responsive</b></div><a href="assignment41.html" class="btn btn-primary" style="padding:5px 10px; font-size:10px;">View Responsive</a></div></div></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="page-footer">
+            <div class="footer-col"><h4>Q43 Rule - Grid + Flexbox Appropriately</h4><p>Page layout = Grid (2D rows+cols)<br>Components = Flex (1D row/col)<br>This reference landing follows rule.<br>Vaishnavi Singh - BCA AI - 8127780277</p></div>
+            <div class="footer-col"><h4>Grid Used For (2D)</h4><a>• .page grid-template-areas header hero features products footer</a><a>• .page-hero grid-template-columns 1.2fr 0.8fr</a><a>• .feature-grid repeat(auto-fit, minmax(240px,1fr))</a><a>• .product-grid repeat(auto-fit, minmax(220px,1fr))</a><a>• .page-footer repeat(auto-fit, minmax(200px,1fr))</a></div>
+            <div class="footer-col"><h4>Flex Used For (1D)</h4><a>• .page-header display:flex space-between</a><a>• .hero-content flex-direction:column gap</a><a>• .hero-btns flex row wrap</a><a>• .hero-stats flex row</a><a>• .p-body flex column + price-row flex space-between</a><a>• .footer-col flex column</a></div>
+        </footer>
+
+    </div>
+
+    <div class="info">
+        <h2>Q43 - Viva Answer - Why Both Grid and Flexbox?</h2>
+        <div class="code">/* Q43 - Reference Landing Page using both Grid and Flexbox appropriately */
+
+PAGE LAYOUT - GRID (2D - rows + columns)
+.page {
+  display: grid;
+  grid-template-areas: "header" "hero" "features" "products" "footer";
+}
+.page-hero { display: grid; grid-template-columns: 1.2fr 0.8fr; } /* 2 cols */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); }
+.page-footer { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); }
+WHY GRID? Because these control BOTH rows and columns - 2D layout. Page structure needs 2D.
+
+COMPONENTS INSIDE - FLEXBOX (1D - row OR column)
+.page-header { display: flex; justify-content: space-between; align-items: center; } /* Row */
+.hero-content { display: flex; flex-direction: column; gap: 14px; } /* Column stack */
+.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; } /* Row of buttons */
+.hero-stats { display: flex; gap: 20px; } /* Row of stats */
+.p-body { display: flex; flex-direction: column; } /* Card content column */
+.price-row { display: flex; justify-content: space-between; align-items: center; } /* Row */
+.footer-col { display: flex; flex-direction: column; gap: 8px; } /* Column stack */
+WHY FLEX? Because these are 1D - either row OR column, need alignment, space-between, centering.
+
+REFERENCE RULE:
+- Use Grid when you need to control layout in 2 dimensions (page, gallery, product grid, footer columns)
+- Use Flex when you need to align content in 1 dimension (navbar, button group, card content, price row)
+- This page is reference example - same as Airbnb, Netflix, Amazon landing pages
+
+RESULT: Clean, maintainable, no hack - Grid for macro, Flex for micro.</div>
+        <p style="font-size:13px; margin-top:10px;"><strong>Vaishnavi Singh - Q43 Reference Landing Page using Grid + Flexbox Appropriately Completed - 8127780277 - Q1-Q43 Done</strong></p>
+    </div>
+
+</body>
+</html>

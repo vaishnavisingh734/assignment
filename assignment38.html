@@ -1,0 +1,292 @@
+Q38-Recreate a simple dashboard layout using named grid areas
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q38 - Simple Dashboard using Named Grid Areas - Vaishnavi Singh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary:#0F2C61; --accent:#FF6B35; --bg:#F0F2F5; --surface:#fff; --border:#DEE2E6; --text:#212529; --text-light:#6C757D; }
+        *{margin:0; padding:0; box-sizing:border-box;}
+        body{font-family:Inter, sans-serif; background:var(--bg); color:var(--text);}
+        h1,h2,h3{font-family:Poppins, sans-serif;}
+
+        /* ========== Q38 - NAMED GRID AREAS - MAIN TASK ========== */
+        .dashboard {
+            display: grid;
+            /* Define columns and rows */
+            grid-template-columns: 220px 1fr 280px;
+            grid-template-rows: 60px 1fr 40px;
+            /* NAME THE AREAS - Visual layout */
+            grid-template-areas:
+                "header header header"
+                "sidebar main rightbar"
+                "footer footer footer";
+            gap: 12px;
+            min-height: 100vh;
+            padding: 12px;
+            background: var(--bg);
+        }
+
+        /* Assign each element to a named area */
+        .dash-header { grid-area: header; }
+        .dash-sidebar { grid-area: sidebar; }
+        .dash-main { grid-area: main; }
+        .dash-rightbar { grid-area: rightbar; }
+        .dash-footer { grid-area: footer; }
+
+        /* Styling for each area */
+        .dash-header {
+            background: var(--primary);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 18px;
+        }
+        .dash-sidebar {
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .dash-main {
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow: auto;
+        }
+        .dash-rightbar {
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .dash-footer {
+            background: var(--primary);
+            color: #a8b9d9;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+        }
+
+        /* Inner content styling */
+        .logo { font-family:Poppins; font-weight:700; font-size:16px; display:flex; align-items:center; gap:8px; }
+        .logo-img { width:32px; height:32px; border-radius:50%; background:white; border:2px solid var(--accent); }
+        .nav-item { display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:8px; font-size:13px; text-decoration:none; color:var(--text); transition:0.2s; }
+        .nav-item:hover, .nav-item.active { background:#eef2ff; color:var(--primary); font-weight:600; }
+        .stat-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
+        .stat-card { background:#F8F9FA; padding:12px; border-radius:8px; border:1px solid var(--border); text-align:center; }
+        .stat-card b { font-family:Poppins; color:var(--primary); font-size:18px; display:block; }
+        .stat-card span { font-size:11px; color:var(--text-light); }
+        .project-card { background:#F8F9FA; padding:12px; border-radius:8px; border:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+        .btn { padding:6px 12px; border-radius:20px; font-size:11px; font-family:Poppins; text-decoration:none; background:var(--primary); color:white; display:inline-block; }
+        .btn-accent { background:var(--accent); }
+        .profile-box { background:#eef2ff; padding:12px; border-radius:8px; border:1px solid #dbe2f0; text-align:center; }
+        .profile-box img { width:60px; height:60px; border-radius:50%; border:3px solid white; box-shadow:0 2px 6px rgba(0,0,0,0.1); background:white; }
+
+        /* ========== RESPONSIVE - CHANGE GRID AREAS ========== */
+        @media(max-width:1000px){
+            .dashboard {
+                grid-template-columns: 200px 1fr;
+                grid-template-rows: 60px 1fr  auto 40px;
+                grid-template-areas:
+                    "header header"
+                    "sidebar main"
+                    "rightbar rightbar"
+                    "footer footer";
+            }
+        }
+        @media(max-width:650px){
+            .dashboard {
+                grid-template-columns: 1fr;
+                grid-template-rows: 60px auto 1fr auto 40px;
+                grid-template-areas:
+                    "header"
+                    "sidebar"
+                    "main"
+                    "rightbar"
+                    "footer";
+            }
+            .stat-grid { grid-template-columns:1fr; }
+        }
+
+        .info-outside { max-width:1150px; margin:20px auto; background:white; padding:18px; border-radius:10px; border-left:5px solid var(--accent); }
+        .code { background:#212121; color:#e0e0e0; padding:12px; border-radius:6px; font-family:monospace; font-size:12px; overflow:auto; margin-top:10px; }
+    </style>
+</head>
+<body>
+
+    <!-- DASHBOARD - NAMED GRID AREAS -->
+    <div class="dashboard">
+
+        <!-- HEADER - grid-area: header -->
+        <header class="dash-header">
+            <div class="logo"><img src="image.png.png" alt="Vaishnavi Singh Logo" class="logo-img"> Vaishnavi Singh | BCA AI Dashboard - Q38</div>
+            <div style="display:flex; align-items:center; gap:10px; font-size:12px;">
+                <span>📞 8127780277</span>
+                <span style="background:var(--accent); padding:5px 10px; border-radius:20px; font-family:Poppins;">Q38 Named Areas</span>
+            </div>
+        </header>
+
+        <!-- SIDEBAR - grid-area: sidebar -->
+        <aside class="dash-sidebar">
+            <h3 style="font-size:14px;">Navigation</h3>
+            <a href="assignment25.html" class="nav-item active">🏠 Dashboard Home</a>
+            <a href="assignment15.html" class="nav-item">📁 Portfolio Q15</a>
+            <a href="assignment30.html" class="nav-item">🃏 Cards Q30</a>
+            <a href="assignment35.html" class="nav-item">🎨 Flex Landing Q35</a>
+            <a href="assignment36.html" class="nav-item">🖼️ Gallery Grid Q36</a>
+            <a href="assignment37.html" class="nav-item">🛍️ Product Grid Q37</a>
+            <a href="assignment38.html" class="nav-item" style="background:var(--accent); color:white;">📊 This Dashboard Q38</a>
+            
+            <div style="margin-top:10px; padding:10px; background:#fff2ed; border-radius:8px; border:1px solid #ffd8c2;">
+                <p style="font-size:11px; font-family:Poppins; color:var(--accent); font-weight:600;">Q38 - Named Grid Areas</p>
+                <p style="font-size:11px; color:var(--text-light);">grid-template-areas visual layout</p>
+            </div>
+
+            <div style="margin-top:auto; font-size:11px; color:var(--text-light);">
+                GitHub: vaishnavisingh734/assignment<br>Q1-Q38 Complete
+            </div>
+        </aside>
+
+        <!-- MAIN - grid-area: main -->
+        <main class="dash-main">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <h2 style="font-size:18px;">Welcome, Vaishnavi Singh! - BCA AI Dashboard</h2>
+                <span style="background:#e8f5e9; color:#2e7d32; padding:5px 10px; border-radius:20px; font-size:11px; font-family:Poppins;">● Shahjahanpur Top Student</span>
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat-card"><b>38</b><span>Assignments Done</span></div>
+                <div class="stat-card"><b>Q36-Q38</b><span>Grid Series</span></div>
+                <div class="stat-card"><b>100%</b><span>Named Areas Used</span></div>
+            </div>
+
+            <h3 style="font-size:14px; margin-top:5px;">My Projects - Q1 to Q38</h3>
+
+            <div class="project-card">
+                <div><b style="font-family:Poppins; font-size:13px; color:var(--primary);">Q25 - Final Styled Multi-Page Project</b><br><span style="font-size:11px; color:var(--text-light);">Most important - Font pairing, palette, tokens, full website</span></div>
+                <a href="assignment25.html" class="btn btn-accent">View</a>
+            </div>
+
+            <div class="project-card">
+                <div><b style="font-family:Poppins; font-size:13px;">Q35 - Finished Flexbox Landing Page</b><br><span style="font-size:11px; color:var(--text-light);">Q31-Q35 flexbox series final - 100% flex only</span></div>
+                <a href="assignment35.html" class="btn">View</a>
+            </div>
+
+            <div class="project-card">
+                <div><b style="font-family:Poppins; font-size:13px;">Q37 - Responsive Product Grid Auto Reflow</b><br><span style="font-size:11px; color:var(--text-light);">auto-fit minmax(260px, 1fr) - Auto reflow without media query</span></div>
+                <a href="assignment37.html" class="btn">View</a>
+            </div>
+
+            <div class="project-card" style="border:2px solid var(--accent); background:#fff8f0;">
+                <div><b style="font-family:Poppins; font-size:13px; color:var(--accent);">Q38 - This Dashboard - Named Grid Areas</b><br><span style="font-size:11px; color:var(--text-light);">You are here - grid-template-areas: header sidebar main rightbar footer</span></div>
+                <a href="assignment38.html" class="btn btn-accent">You Are Here</a>
+            </div>
+
+        </main>
+
+        <!-- RIGHTBAR - grid-area: rightbar -->
+        <aside class="dash-rightbar">
+            <div class="profile-box">
+                <img src="image.png.png" alt="Vaishnavi Singh Profile BCA AI Dashboard Q38">
+                <h3 style="font-size:14px; margin-top:8px;">Vaishnavi Singh</h3>
+                <p style="font-size:11px; color:var(--accent); font-family:Poppins; font-weight:600;">BCA AI 1st Year</p>
+                <p style="font-size:11px; color:var(--text-light); margin-top:4px;">Shahjahanpur, UP<br>Rana Public School → BCA AI<br>8127780277</p>
+                <div style="margin-top:10px; display:flex; gap:6px; justify-content:center; flex-wrap:wrap;">
+                    <span style="background:white; border:1px solid var(--border); padding:3px 8px; border-radius:20px; font-size:10px;">HTML</span>
+                    <span style="background:white; border:1px solid var(--border); padding:3px 8px; border-radius:20px; font-size:10px;">CSS Grid</span>
+                    <span style="background:var(--accent); color:white; padding:3px 8px; border-radius:20px; font-size:10px;">Q38 Expert</span>
+                </div>
+            </div>
+
+            <h3 style="font-size:13px;">Quick Links - Q36-Q38 Grid</h3>
+            <a href="assignment36.html" style="font-size:12px; color:var(--primary); text-decoration:none; padding:6px 0; border-bottom:1px solid var(--border); display:block;">→ Q36 Photo Gallery Grid</a>
+            <a href="assignment37.html" style="font-size:12px; color:var(--primary); text-decoration:none; padding:6px 0; border-bottom:1px solid var(--border); display:block;">→ Q37 Product Grid Auto Reflow</a>
+            <a href="assignment38.html" style="font-size:12px; color:var(--accent); text-decoration:none; padding:6px 0; border-bottom:1px solid var(--border); display:block; font-weight:600;">→ Q38 Dashboard Named Areas (This)</a>
+
+            <div style="background:#eef2ff; padding:10px; border-radius:8px; border:1px solid #dbe2f0; margin-top:10px;">
+                <p style="font-size:11px; font-family:Poppins; font-weight:600; color:var(--primary);">Grid Areas Used:</p>
+                <p style="font-size:10px; font-family:monospace; color:var(--text-light); margin-top:4px;">"header header header"<br>"sidebar main rightbar"<br>"footer footer footer"</p>
+            </div>
+        </aside>
+
+        <!-- FOOTER - grid-area: footer -->
+        <footer class="dash-footer">
+            Q38 - Simple Dashboard using Named Grid Areas - Vaishnavi Singh - BCA AI - 8127780277 - Q1-Q38 Complete - grid-template-areas: header sidebar main rightbar footer
+        </footer>
+
+    </div>
+
+    <!-- EXPLANATION OUTSIDE DASHBOARD -->
+    <div class="info-outside">
+        <h2>Q38 - Named Grid Areas Explained (Viva Note)</h2>
+        <div class="code">
+/* Parent defines visual map */
+.dashboard {
+  display: grid;
+  grid-template-columns: 220px 1fr 280px; /* 3 columns: sidebar fixed, main flexible, rightbar fixed */
+  grid-template-rows: 60px 1fr 40px;       /* 3 rows: header fixed, main flexible, footer fixed */
+  grid-template-areas:                     /* VISUAL LAYOUT MAP - Easy to read! */
+    "header header header"                 /* Row 1: header spans 3 columns */
+    "sidebar main rightbar"                /* Row 2: 3 areas side by side */
+    "footer footer footer";                /* Row 3: footer spans 3 columns */
+  gap: 12px;
+}
+
+/* Children assign themselves to named areas */
+.dash-header { grid-area: header; }
+.dash-sidebar { grid-area: sidebar; }
+.dash-main { grid-area: main; }
+.dash-rightbar { grid-area: rightbar; }
+.dash-footer { grid-area: footer; }
+
+/* Responsive - Just change the area map! No need to move HTML */
+@media(max-width:1000px){
+  .dashboard {
+    grid-template-columns: 200px 1fr;
+    grid-template-areas:
+      "header header"
+      "sidebar main"
+      "rightbar rightbar"
+      "footer footer";
+  }
+}
+@media(max-width:650px){
+  .dashboard {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main"
+      "rightbar"
+      "footer";
+  }
+}
+        </div>
+
+        <h3 style="margin-top:12px; font-size:14px;">Why Named Areas Better?</h3>
+        <p style="font-size:13px;">Without named areas, you use <code>grid-column: 1 / 4</code> and <code>grid-row: 1 / 2</code> - numbers confusing. With named areas, you write visual ASCII map <code>"header header header"</code> - instantly clear which area spans where. Responsive me sirf <code>grid-template-areas</code> change karo, HTML same rahega. Dashboard, admin panels, newspaper layouts me ye standard technique hai. Q38 yehi demonstrate karta hai.</p>
+
+        <p style="margin-top:10px; font-size:13px;"><strong>Vaishnavi Singh - Q38 Dashboard using Named Grid Areas Completed - 8127780277</strong></p>
+        <p style="font-size:12px; margin-top:5px;"><a href="assignment37.html">← Q37 Product Grid</a> | <a href="assignment36.html">Q36 Gallery</a> | <a href="assignment25.html">Q25 Final →</a></p>
+    </div>
+
+</body>
+</html>

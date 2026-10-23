@@ -1,0 +1,84 @@
+Q12-Ensure every image on the portfolio page has a meaningful alt attribute.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vaishnavi Singh - Portfolio with Images</title>
+</head>
+<body>
+
+    <header>
+        <h1>VAISHNAVI SINGH - PORTFOLIO</h1>
+        <p>BCA AI 1st Year | Shahjahanpur, UP</p>
+        <!-- Profile Photo with meaningful alt -->
+        <img src="https://via.placeholder.com/150" alt="Profile photo of Vaishnavi Singh, BCA AI student from Shahjahanpur" width="150" height="150">
+    </header>
+
+    <nav>
+        <a href="#about">About</a> | 
+        <a href="#education">Education</a> | 
+        <a href="#skills">Skills</a> | 
+        <a href="#projects">Projects</a> | 
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <hr>
+
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <img src="https://via.placeholder.com/300x150" alt="Illustration showing a girl student learning web development and AI on laptop" width="300">
+            <p>I am <strong>Vaishnavi Singh</strong> from Shahjahanpur. Email: radha.singh.12345.radha.singh@gmail.com, Phone: 8127780277. I am in BCA AI 1st Year, from Rana Public School.</p>
+            <p><a href="#home">Back to Top ↑</a></p>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <img src="https://via.placeholder.com/200x100" alt="Graduation cap icon representing education and BCA AI course" width="200">
+            <ul>
+                <li>BCA AI - 1st Year - Currently Pursuing</li>
+                <li>12th - Rana Public School</li>
+            </ul>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <img src="https://via.placeholder.com/300x100" alt="Icons of HTML5, Git, GitHub and VS Code tools used for web development" width="300">
+            <ul>
+                <li>HTML</li>
+                <li>Git & GitHub</li>
+                <li>VS Code, Live Server, Terminal</li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <img src="https://via.placeholder.com/300x150" alt="Screenshot collage of 11 HTML assignments from Q1 to Q12 portfolio project" width="300">
+            <p>1. HTML Assignment Repository (Q1-Q12)</p>
+            <p>2. Personal Resume & Portfolio with Navigation</p>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <hr>
+        <h2>Contact Me</h2>
+        <!-- Contact icons with alt -->
+        <p>
+            <img src="https://via.placeholder.com/20" alt="Email icon"> radha.singh.12345.radha.singh@gmail.com<br>
+            <img src="https://via.placeholder.com/20" alt="Phone icon"> 8127780277<br>
+            <img src="https://via.placeholder.com/20" alt="Location pin icon for Shahjahanpur"> Shahjahanpur, UP
+        </p>
+
+        <h3>Why Meaningful Alt is Important - Q12 Requirement:</h3>
+        <ul>
+            <li>Alt helps screen readers for blind users</li>
+            <li>Shows text if image fails to load</li>
+            <li>Improves SEO - Google understands image</li>
+            <li>Example: Bad alt="image1" vs Good alt="Profile photo of Vaishnavi Singh..."</li>
+        </ul>
+
+        <p><strong>- Vaishnavi Singh</strong></p>
+    </footer>
+
+</body>
+</html>

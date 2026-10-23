@@ -1,0 +1,209 @@
+Q36-Build a simple photo gallery using CSS Grid.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q36 - Simple Photo Gallery using CSS Grid - Vaishnavi Singh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary:#0F2C61; --accent:#FF6B35; --bg:#F8F9FA; --surface:#fff; --border:#DEE2E6; --text:#212529; }
+        *{margin:0; padding:0; box-sizing:border-box;}
+        body{font-family:Inter, sans-serif; background:var(--bg); color:var(--text);}
+        h1,h2{font-family:Poppins, sans-serif; color:var(--primary);}
+
+        .navbar { display:flex; justify-content:space-between; align-items:center; background:var(--primary); padding:12px 20px; color:white; position:sticky; top:0; z-index:10; }
+        .navbar a{color:white; text-decoration:none; font-size:13px; font-family:Poppins; margin-left:12px;}
+
+        .container { max-width:1100px; margin:20px auto; padding:0 15px; }
+        .header { background:white; padding:18px; border-radius:10px; border:1px solid var(--border); margin-bottom:18px; }
+
+        /* ========== Q36 - GRID GALLERY - MAIN TASK ========== */
+        .gallery {
+            display: grid; /* MAIN PROPERTY */
+            grid-template-columns: repeat(3, 1fr); /* 3 columns equal width */
+            gap: 15px; /* Gap between photos */
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: 0.3s;
+        }
+        .gallery-item:hover { transform: translateY(-4px); box-shadow:0 10px 20px rgba(0,0,0,0.12); }
+
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            background: #fff8f0;
+        }
+        .gallery-caption {
+            padding: 10px 12px;
+            font-size: 12px;
+        }
+        .gallery-caption b { font-family:Poppins; color:var(--primary); display:block; font-size:13px; }
+        .gallery-caption span { color:#6C757D; font-size:11px; }
+
+        /* Responsive Grid */
+        @media(max-width:900px){
+            .gallery { grid-template-columns: repeat(2, 1fr); } /* 2 columns on tablet */
+        }
+        @media(max-width:500px){
+            .gallery { grid-template-columns: 1fr; } /* 1 column on mobile */
+        }
+
+        /* Variant 2 - Auto-fit responsive without media query */
+        .gallery-auto {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Auto-fit magic */
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .info { background:white; padding:18px; border-radius:10px; border-left:5px solid var(--accent); margin-top:25px; }
+        .code { background:#212121; color:#e0e0e0; padding:12px; border-radius:6px; font-family:monospace; font-size:12px; overflow:auto; margin-top:10px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div style="font-family:Poppins; font-weight:700;">Vaishnavi Singh | BCA AI Q36 Grid Gallery</div>
+        <div>
+            <a href="assignment35.html">Q35 Flex Final</a>
+            <a href="assignment31.html">Q31 Menu Flex</a>
+            <a href="assignment25.html">Q25 Final</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>Q36 - Simple Photo Gallery using CSS Grid</h1>
+            <p><strong>Vaishnavi Singh | 8127780277 | Shahjahanpur | BCA AI</strong> - Simple 3-column grid gallery, responsive to 2 and 1 column. First Grid assignment after Flexbox series Q31-Q35.</p>
+            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+                <span style="background:var(--primary); color:white; padding:5px 10px; border-radius:20px; font-size:11px; font-family:Poppins;">display: grid</span>
+                <span style="background:var(--accent); color:white; padding:5px 10px; border-radius:20px; font-size:11px; font-family:Poppins;">grid-template-columns: repeat(3, 1fr)</span>
+                <span style="background:#eef2ff; color:var(--primary); padding:5px 10px; border-radius:20px; font-size:11px; font-family:Poppins;">gap: 15px</span>
+                <span style="background:#fff2ed; color:var(--accent); padding:5px 10px; border-radius:20px; font-size:11px; font-family:Poppins;">repeat(auto-fit, minmax(250px, 1fr))</span>
+            </div>
+        </div>
+
+        <!-- GALLERY 1 - Simple 3 columns -->
+        <h2 style="margin-bottom:12px;">Gallery 1 - Fixed 3 Columns (with media query)</h2>
+        <div class="gallery">
+
+            <div class="gallery-item">
+                <img src="image.png.png" alt="Vaishnavi Singh Photo 1 BCA AI Campus Rana Public School" class="gallery-img">
+                <div class="gallery-caption"><b>Q1 - HTML Intro</b><span>Vaishnavi Singh - First HTML file - 8127780277</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="image.png.png" alt="Vaishnavi Singh Photo 2 Portfolio Q15" class="gallery-img">
+                <div class="gallery-caption"><b>Q15 - Portfolio</b><span>Semantic tags header main footer</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="image.png.png" alt="Vaishnavi Singh Photo 3 Forms Q16" class="gallery-img">
+                <div class="gallery-caption"><b>Q16-Q17 - Forms</b><span>Student registration & job application forms</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="image.png.png" alt="Vaishnavi Singh Photo 4 Table Q18" class="gallery-img">
+                <div class="gallery-caption"><b>Q18 - Size Chart Table</b><span>Rowspan colspan complex table</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="image.png.png" alt="Vaishnavi Singh Photo 5 Styled Project Q25" class="gallery-img">
+                <div class="gallery-caption"><b>Q25 - Final Styled Project</b><span>Font pairing Poppins+Inter, color palette</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="image.png.png" alt="Vaishnavi Singh Photo 6 Flexbox Q31-Q35" class="gallery-img">
+                <div class="gallery-caption"><b>Q31-Q35 - Flexbox Series</b><span>Menu, login center, listing, hero, final landing</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="image.png.png" alt="Vaishnavi Singh Photo 7 Grid Start Q36" class="gallery-img">
+                <div class="gallery-caption"><b>Q36 - This Gallery Grid</b><span>Simple photo gallery using CSS Grid - You are here</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="image.png.png" alt="Vaishnavi Singh Photo 8 BCA AI Shahjahanpur" class="gallery-img">
+                <div class="gallery-caption"><b>Shahjahanpur Campus</b><span>BCA AI 1st Year - Rana Public School to College</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="image.png.png" alt="Vaishnavi Singh Photo 9 All Assignments GitHub" class="gallery-img">
+                <div class="gallery-caption"><b>GitHub - All Assignments</b><span>github.com/vaishnavisingh734/assignment - Q1-Q36</span></div>
+            </div>
+
+        </div>
+
+        <!-- GALLERY 2 - Auto-fit (Advanced) -->
+        <h2 style="margin-top:30px; margin-bottom:12px;">Gallery 2 - Auto-fit Responsive (No media query needed)</h2>
+        <p style="font-size:12px; color:#6C757D; margin-bottom:10px;">This uses <code>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))</code> - Browser automatically decides columns based on width, no media query for columns.</p>
+        
+        <div class="gallery-auto">
+
+            <div class="gallery-item">
+                <img src="image.png.png" alt="Auto Gallery 1 Vaishnavi Singh" class="gallery-img">
+                <div class="gallery-caption"><b>Auto-Fit 1</b><span>250px min, auto columns - Vaishnavi 8127780277</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="image.png.png" alt="Auto Gallery 2 Vaishnavi Singh" class="gallery-img">
+                <div class="gallery-caption"><b>Auto-Fit 2</b><span>Resize window - columns auto adjust</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="image.png.png" alt="Auto Gallery 3 Vaishnavi Singh" class="gallery-img">
+                <div class="gallery-caption"><b>Auto-Fit 3</b><span>No media query for column count</span></div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="image.png.png" alt="Auto Gallery 4 Vaishnavi Singh" class="gallery-img">
+                <div class="gallery-caption"><b>Auto-Fit 4</b><span>Modern Grid technique - Q36 extra</span></div>
+            </div>
+
+        </div>
+
+        <div class="info">
+            <h2>Q36 - How Grid Gallery Works (Viva Note)</h2>
+            <div class="code">
+/* Simple 3-column gallery */
+.gallery {
+  display: grid;                           /* Make grid container */
+  grid-template-columns: repeat(3, 1fr);   /* 3 equal columns - 1fr = 1 fraction */
+  gap: 15px;                              /* Gap between rows and columns */
+}
+
+/* Responsive - Tablet 2 cols, Mobile 1 col */
+@media(max-width:900px){ .gallery{ grid-template-columns: repeat(2, 1fr); } }
+@media(max-width:500px){ .gallery{ grid-template-columns: 1fr; } }
+
+/* Advanced - Auto-fit without media queries for columns */
+.gallery-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* auto-fit = fit as many as possible, minmax(250px, 1fr) = min 250px, max 1fr */
+  gap: 15px;
+}
+            </div>
+
+            <h3 style="margin-top:12px;">Why Grid Better Than Flex for Gallery?</h3>
+            <p style="font-size:13px;">Flexbox is 1D (row OR column). Grid is 2D (rows AND columns both). Gallery me rows aur columns dono control karne hote hain, isliye Grid best hai. <code>repeat(3, 1fr)</code> se 3 equal columns, <code>gap</code> se clean spacing. <code>auto-fit + minmax</code> se bina media query ke responsive - browser khud decide karta hai kitne columns aayenge. Flex-wrap me equal height mushkil, Grid me auto equal.</p>
+
+            <p style="margin-top:10px; font-size:13px;"><strong>Vaishnavi Singh - Q36 Simple Photo Gallery using CSS Grid Completed - 8127780277</strong></p>
+            <p style="font-size:12px; margin-top:5px;"><a href="assignment35.html">← Q35 Flex Final</a> | <a href="assignment25.html">Q25 Final →</a></p>
+        </div>
+
+    </div>
+
+</body>
+</html>

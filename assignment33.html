@@ -1,0 +1,302 @@
+Q33-Build a product-listing style layout using flex-wrap.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q33 - Product Listing Layout using Flex-Wrap - Vaishnavi Singh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary:#0F2C61; --accent:#FF6B35; --bg:#F8F9FA; --surface:#fff; --border:#DEE2E6; --text:#212529; --text-light:#6C757D; }
+        *{margin:0; padding:0; box-sizing:border-box;}
+        body{font-family:Inter, sans-serif; background:var(--bg); color:var(--text);}
+        h1,h2,h3{font-family:Poppins, sans-serif; color:var(--primary);}
+
+        /* NAVBAR - Q31 reuse */
+        .navbar {
+            display:flex; justify-content:space-between; align-items:center;
+            background:var(--primary); padding:12px 20px; color:white;
+            position:sticky; top:0; z-index:10;
+        }
+        .navbar a { color:white; text-decoration:none; font-family:Poppins; font-size:13px; margin-left:12px; }
+        .logo { font-weight:700; }
+
+        .container { max-width: 1100px; margin: 20px auto; padding: 0 15px; }
+        .header { background:white; padding:18px; border-radius:10px; margin-bottom:18px; border:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+
+        /* ========== Q33 - FLEX-WRAP PRODUCT LISTING ========== */
+        .product-listing {
+            display: flex; /* Main flex container */
+            flex-direction: row;
+            flex-wrap: wrap; /* KEY PROPERTY - Allows wrapping to next line */
+            gap: 18px; /* Gap between cards - modern */
+            justify-content: flex-start; /* Align from start */
+            align-items: stretch; /* Equal height cards */
+        }
+
+        .product-card {
+            /* Flex basis controls width - Responsive without media queries */
+            flex: 1 1 250px; /* flex-grow:1 flex-shrink:1 flex-basis:250px */
+            max-width: 320px; /* Don't grow too big */
+            min-width: 240px; /* Don't shrink too small */
+            background: var(--surface);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(15,44,97,0.12); }
+
+        .img-wrap {
+            height: 160px;
+            background: #fff8f0;
+            background-image: radial-gradient(#ffd8c2 1px, transparent 1px);
+            background-size: 18px 18px;
+            display:flex; align-items:center; justify-content:center;
+            position: relative;
+        }
+        .img-wrap img { max-width:75%; max-height:75%; object-fit:contain; }
+        .badge {
+            position:absolute; top:8px; left:8px;
+            background:var(--accent); color:white; font-size:10px; font-family:Poppins;
+            padding:3px 8px; border-radius:4px;
+        }
+        .badge-new { background:var(--primary); left:auto; right:8px; border-radius:20px; }
+
+        .card-body { padding:14px; display:flex; flex-direction:column; flex:1; }
+        .category { font-size:10px; color:var(--text-light); letter-spacing:1px; text-transform:uppercase; font-family:Poppins; }
+        .title { font-size:15px; margin:4px 0; line-height:1.3; color:var(--primary); }
+        .desc { font-size:12px; color:var(--text-light); margin:4px 0 8px; line-height:1.4; }
+        .price-row { display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:10px; border-top:1px solid var(--border); }
+        .price { font-family:Poppins; }
+        .price .new { font-size:16px; color:var(--primary); }
+        .price .old { font-size:12px; color:var(--text-light); text-decoration:line-through; margin-left:5px; }
+        .btn { padding:6px 12px; border-radius:20px; font-size:11px; font-family:Poppins; text-decoration:none; border:none; cursor:pointer; }
+        .btn-primary { background:var(--primary); color:white; }
+        .btn-accent { background:var(--accent); color:white; }
+
+        /* Filter bar with flex */
+        .filter-bar {
+            display:flex;
+            gap:8px;
+            flex-wrap:wrap;
+            align-items:center;
+        }
+        .filter-bar button {
+            padding:6px 12px;
+            border-radius:20px;
+            border:1px solid var(--border);
+            background:white;
+            font-size:12px;
+            font-family:Poppins;
+            cursor:pointer;
+        }
+        .filter-bar button.active { background:var(--primary); color:white; border-color:var(--primary); }
+
+        .code { background:#212121; color:#e0e0e0; padding:12px; border-radius:6px; font-family:monospace; font-size:12px; overflow:auto; margin-top:10px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Vaishnavi Singh | BCA AI - Q33 Flex-Wrap</div>
+        <div>
+            <a href="assignment31.html">Q31 Menu Flex</a>
+            <a href="assignment32.html">Q32 Center Flex</a>
+            <a href="assignment25.html">Q25 Final</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="header">
+            <div>
+                <h1 style="font-size:22px;">Q33 - Product Listing using Flex-Wrap</h1>
+                <p style="font-size:13px; color:var(--text-light);"><strong>Vaishnavi Singh | 8127780277 | Shahjahanpur</strong> - Amazon/Flipkart style listing without CSS Grid, only Flexbox wrap.</p>
+            </div>
+            <div class="filter-bar">
+                <button class="active">All Products</button>
+                <button>BCA AI Notes</button>
+                <button>Q15-Q25</button>
+                <button>CSS Cards</button>
+            </div>
+        </div>
+
+        <!-- PRODUCT LISTING - FLEX-WRAP -->
+        <div class="product-listing">
+
+            <!-- Card 1 -->
+            <div class="product-card">
+                <div class="img-wrap">
+                    <span class="badge">BESTSELLER</span>
+                    <span class="badge badge-new">NEW</span>
+                    <img src="image.png.png" alt="Product 1 Vaishnavi Singh BCA AI Notes Q1-Q10">
+                </div>
+                <div class="card-body">
+                    <div class="category">Q1-Q10 • Basics</div>
+                    <h3 class="title">BCA AI Basics - Q1 to Q10 Bundle</h3>
+                    <p class="desc">HTML intro, URL process, Git & GitHub, tags. For beginners. Shahjahanpur students favorite.</p>
+                    <div class="price-row">
+                        <div class="price"><span class="new">₹99</span><span class="old">₹199</span></div>
+                        <a href="assignment10.html" class="btn btn-primary">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="product-card">
+                <div class="img-wrap">
+                    <span class="badge" style="background:#28a745;">30% OFF</span>
+                    <img src="image.png.png" alt="Product 2 Vaishnavi Singh Portfolio Q15">
+                </div>
+                <div class="card-body">
+                    <div class="category">Q15 • Portfolio</div>
+                    <h3 class="title">Final Portfolio Project Q15</h3>
+                    <p class="desc">Semantic tags, header main footer. Complete portfolio with GitHub link and contact 8127780277.</p>
+                    <div class="price-row">
+                        <div class="price"><span class="new">₹149</span><span class="old">₹299</span></div>
+                        <a href="assignment15.html" class="btn btn-accent">Buy</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="product-card">
+                <div class="img-wrap">
+                    <span class="badge" style="background:#6f42c1;">POPULAR</span>
+                    <img src="image.png.png" alt="Product 3 Vaishnavi Singh Forms Q16 Q17">
+                </div>
+                <div class="card-body">
+                    <div class="category">Q16-Q17 • Forms</div>
+                    <h3 class="title">Student Registration & Job Forms</h3>
+                    <p class="desc">All input types: text, email, radio, checkbox, select, date, file. Validation included.</p>
+                    <div class="price-row">
+                        <div class="price"><span class="new">₹129</span><span class="old">₹249</span></div>
+                        <a href="assignment16.html" class="btn btn-primary">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="product-card">
+                <div class="img-wrap">
+                    <span class="badge" style="background:#fd7e14;">TABLE</span>
+                    <img src="image.png.png" alt="Product 4 Vaishnavi Singh Size Chart Q18">
+                </div>
+                <div class="card-body">
+                    <div class="category">Q18 • Tables</div>
+                    <h3 class="title">E-commerce Size Chart Q18 - Rowspan Colspan</h3>
+                    <p class="desc">Complex table with rowspan colspan for clothing store. Most difficult table assignment.</p>
+                    <div class="price-row">
+                        <div class="price"><span class="new">₹199</span><span class="old">₹349</span></div>
+                        <a href="assignment18.html" class="btn btn-primary">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="product-card">
+                <div class="img-wrap">
+                    <span class="badge" style="background:#0d6efd;">STYLED</span>
+                    <span class="badge badge-new">Q23-Q25</span>
+                    <img src="image.png.png" alt="Product 5 Vaishnavi Singh Styled Project Final">
+                </div>
+                <div class="card-body">
+                    <div class="category">Q23-Q25 • CSS Final</div>
+                    <h3 class="title">Final Styled Multi-Page Project Q25</h3>
+                    <p class="desc">Font pairing Poppins+Inter, color palette Navy+Orange, design tokens, full website.</p>
+                    <div class="price-row">
+                        <div class="price"><span class="new">₹299</span><span class="old">₹599</span></div>
+                        <a href="assignment25.html" class="btn btn-accent">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="product-card">
+                <div class="img-wrap">
+                    <span class="badge" style="background:#20c997;">FLEXBOX</span>
+                    <img src="image.png.png" alt="Product 6 Vaishnavi Singh Flexbox Q31 Q32">
+                </div>
+                <div class="card-body">
+                    <div class="category">Q31-Q32 • Flexbox</div>
+                    <h3 class="title">Flexbox Complete - Menu + Login Center</h3>
+                    <p class="desc">Responsive menu bar flex, perfectly centred login form using justify-content align-items.</p>
+                    <div class="price-row">
+                        <div class="price"><span class="new">₹179</span><span class="old">₹299</span></div>
+                        <a href="assignment31.html" class="btn btn-primary">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="product-card">
+                <div class="img-wrap">
+                    <span class="badge" style="background:var(--primary);">Q33 THIS</span>
+                    <img src="image.png.png" alt="Product 7 Vaishnavi Singh Product Listing Flex Wrap">
+                </div>
+                <div class="card-body">
+                    <div class="category">Q33 • Flex-Wrap Listing</div>
+                    <h3 class="title">This Product Listing Layout - Flex-Wrap Demo</h3>
+                    <p class="desc">You are viewing this card inside flex-wrap listing. Resize window, cards wrap automatically. No media query needed for grid.</p>
+                    <div class="price-row">
+                        <div class="price"><span class="new">₹0</span><span class="old">Free</span></div>
+                        <a href="assignment33.html" class="btn btn-accent">You Are Here</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="product-card">
+                <div class="img-wrap">
+                    <span class="badge" style="background:#dc3545;">HOT</span>
+                    <img src="image.png.png" alt="Product 8 Vaishnavi Singh All Assignments Bundle">
+                </div>
+                <div class="card-body">
+                    <div class="category">Q1-Q33 • Full Bundle</div>
+                    <h3 class="title">Complete Q1-Q33 All Assignments Bundle</h3>
+                    <p class="desc">Full collection: HTML basics to Flexbox product listing. GitHub repo vaishnavisingh734/assignment included.</p>
+                    <div class="price-row">
+                        <div class="price"><span class="new">₹999</span><span class="old">₹1999</span></div>
+                        <a href="assignment25.html" class="btn btn-accent">Buy All</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="background:white; padding:18px; border-radius:10px; margin-top:20px; border-left:5px solid var(--accent);">
+            <h2>Q33 - Flex-Wrap Logic (Viva Note)</h2>
+            <div class="code">
+.product-listing {
+  display: flex;           /* Flex container */
+  flex-wrap: wrap;         /* KEY - Allow items to wrap to next line */
+  gap: 18px;               /* Space between cards - no margin hack */
+  justify-content: flex-start;
+  align-items: stretch;    /* Equal height cards */
+}
+
+.product-card {
+  flex: 1 1 250px;         /* flex-grow:1 flex-shrink:1 flex-basis:250px */
+  max-width: 320px;        /* Max size cap */
+  min-width: 240px;        /* Min size - prevents too small */
+}
+
+/* Result: Desktop = 4 cards per row, Tablet = 3, Mobile = 1-2, auto wrap, no media query for columns needed */
+            </div>
+
+            <h3 style="margin-top:12px; font-size:15px;">Why Flex-Wrap Better Than Float or Fixed Width?</h3>
+            <p style="font-size:13px;">Old: <code>float:left; width:25%</code> + clearfix + media queries for each breakpoint. Flex-wrap me: <code>flex:1 1 250px</code> se browser khud calculate karta hai kitne cards ek row me aayenge based on available width. Gap property se clean spacing. No clearfix, no calculation. Amazon/Flipkart product listing yahi use karte hain, Grid se pehle flex-wrap hi standard tha.</p>
+
+            <p style="font-size:13px; margin-top:10px;"><strong>Vaishnavi Singh - Q33 Product Listing using Flex-Wrap Completed - 8127780277</strong></p>
+            <p style="font-size:12px; margin-top:5px;"><a href="assignment32.html">← Q32 Centered Login</a> | <a href="assignment31.html">Q31 Menu</a> | <a href="assignment25.html">Q25 Final →</a></p>
+        </div>
+
+    </div>
+
+</body>
+</html>

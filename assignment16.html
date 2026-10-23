@@ -1,0 +1,149 @@
+Q16-Create a student-registration form using basic input types.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q16 - Student Registration Form - Vaishnavi Singh D/O Bhanu Singh</title>
+    <style>
+        :root { --primary:#0F2C61; --accent:#FF6B35; --bg:#F8F9FA; --border:#DEE2E6; }
+        *{margin:0; padding:0; box-sizing:border-box;}
+        body{font-family:Inter, sans-serif; background:var(--bg); padding:20px;}
+        h1,h2{font-family:Poppins, sans-serif; color:var(--primary);}
+        .container{max-width:800px; margin:0 auto; background:white; padding:24px; border-radius:12px; border:1px solid var(--border);}
+        label{font-weight:600; font-size:13px; margin-top:10px; display:block;}
+        input, select, textarea{width:100%; padding:10px; margin-top:4px; border:1px solid var(--border); border-radius:6px; font-size:13px;}
+        input[type="radio"], input[type="checkbox"]{width:auto;}
+        fieldset{border:1px solid var(--border); padding:16px; border-radius:8px; margin-top:16px;}
+        legend{font-family:Poppins; font-weight:700; color:var(--primary); padding:0 8px;}
+        .btn{padding:10px 20px; border-radius:20px; border:none; font-family:Poppins; cursor:pointer; margin-right:8px; margin-top:16px;}
+        .btn-submit{background:var(--primary); color:white;}
+        .btn-reset{background:#6c757d; color:white;}
+        .inline{display:flex; gap:16px; align-items:center; margin-top:6px; flex-wrap:wrap;}
+        .inline label{margin:0; font-weight:400; display:inline-flex; align-items:center; gap:6px;}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h1>Q16 - Student Registration Form</h1>
+    <p><strong>Vaishnavi Singh D/o Bhanu Singh | BCA AI 1st Year | Shahjahanpur</strong></p>
+    <p>DOB: 29-07-2010 | Age: 16 | 8127780277 | Q16 Create student-registration form using basic input types</p>
+    <img src="image.png.png" alt="Profile photo of Vaishnavi Singh D/o Bhanu Singh" width="120" style="border-radius:50%; border:3px solid var(--accent); margin-top:10px;">
+    <hr style="margin:16px 0;">
+</header>
+
+<main>
+<div class="container">
+    <h2>BCA AI Student Registration - 2025-26 - Vaishnavi Singh</h2>
+    <p style="font-size:13px; color:#6C757D; margin-bottom:16px;">Fill this form using basic input types - text, email, tel, date, radio, checkbox etc.</p>
+
+    <form action="#" method="post">
+
+        <fieldset>
+            <legend>Personal Details - Vaishnavi Singh</legend>
+            
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Vaishnavi Singh" value="Vaishnavi Singh" required>
+
+            <label for="fathername">Father's Name:</label>
+            <input type="text" id="fathername" name="fathername" placeholder="Bhanu Singh" value="Bhanu Singh" required>
+
+            <label for="mothername">Mother's Name:</label>
+            <input type="text" id="mothername" name="mothername" placeholder="Enter Mother's Name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="radha.singh.12345.radha.singh@gmail.com" value="radha.singh.12345.radha.singh@gmail.com" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="8127780277" value="8127780277" pattern="[0-9]{10}" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" value="2010-07-29" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="10" max="30" placeholder="16" value="16" required>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3">Shahjahanpur, UP - D/o Bhanu Singh - BCA AI 1st Year</textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Gender & Category</legend>
+            <label>Gender:</label>
+            <div class="inline">
+                <label><input type="radio" name="gender" value="female" checked> Female</label>
+                <label><input type="radio" name="gender" value="male"> Male</label>
+                <label><input type="radio" name="gender" value="other"> Other</label>
+            </div>
+
+            <label>Category:</label>
+            <div class="inline">
+                <label><input type="radio" name="category" value="general" checked> General</label>
+                <label><input type="radio" name="category" value="obc"> OBC</label>
+                <label><input type="radio" name="category" value="sc"> SC</label>
+                <label><input type="radio" name="category" value="st"> ST</label>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Academic Details</legend>
+            
+            <label for="course">Course:</label>
+            <select id="course" name="course">
+                <option value="">Select Course</option>
+                <option value="bca-ai" selected>BCA AI - Artificial Intelligence</option>
+                <option value="bca">BCA</option>
+                <option value="btech">B.Tech</option>
+            </select>
+
+            <label for="year">Admission Year:</label>
+            <input type="month" id="year" name="year" value="2025-08">
+
+            <label>Languages Known:</label>
+            <div class="inline">
+                <label><input type="checkbox" name="lang" value="hindi" checked> Hindi</label>
+                <label><input type="checkbox" name="lang" value="english" checked> English</label>
+            </div>
+
+            <label for="photo">Upload Photo:</label>
+            <input type="file" id="photo" name="photo" accept="image/*">
+
+            <label for="favcolor">Favorite Color:</label>
+            <input type="color" id="favcolor" name="favcolor" value="#FF6B35" style="height:40px;">
+
+            <label for="website">Portfolio URL:</label>
+            <input type="url" id="website" name="website" value="https://github.com/vaishnavisingh734/assignment">
+
+            <label for="password">Create Password:</label>
+            <input type="password" id="password" name="password" placeholder="Min 8 chars" required>
+
+            <label for="search">How did you find us?</label>
+            <input type="search" id="search" name="search" placeholder="Google, Friend, etc.">
+
+            <label for="time">Preferred Counseling Time:</label>
+            <input type="time" id="time" name="time">
+
+            <label for="range">Rate your computer skills (1-10):</label>
+            <input type="range" id="range" name="range" min="1" max="10" value="7">
+        </fieldset>
+
+        <div style="margin-top:10px;">
+            <label><input type="checkbox" name="terms" required> I agree to terms - Vaishnavi Singh D/o Bhanu Singh - DOB 29-07-2010 - Age 16 - 8127780277</label>
+        </div>
+
+        <button type="submit" class="btn btn-submit">Submit Registration - Vaishnavi Singh D/o Bhanu Singh - Q16</button>
+        <button type="reset" class="btn btn-reset">Reset</button>
+
+    </form>
+
+    <div style="margin-top:20px; background:#eef2ff; padding:12px; border-radius:8px; font-size:12px;">
+        <b>Q16 Details Updated:</b> Name: Vaishnavi Singh, Father: Bhanu Singh, DOB: 29-07-2010, Age: 16, Phone: 8127780277 - Basic input types: text, email, tel, date 2010-07-29, number 16, radio, checkbox, select, file, color, url, password, search, time, month, range - All covered
+    </div>
+</div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+Q9-Debug and correct a supplied buggy HTML file.
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Q9 - Debugged HTML File</title>
+</head>
+<body>
+
+    <h2>Q9 - Debug and Correct Supplied Buggy HTML File</h2>
+
+    <h3>Original Buggy Code (With Errors):</h3>
+    <pre>
+&lt;html>
+&lt;head>&lt;title>My Resume&lt;/title>
+&lt;body>
+&lt;h1>VAISHNAVI SINGH
+&lt;p>Email: radha.singh.12345.radha.singh@gmail.com
+&lt;h2>Education<h2>
+&lt;ul>
+&lt;li>BCA AI - 1st Year
+&lt;li>Rana Public School
+&lt;p>Shahjahanpur
+&lt;/body>
+    </pre>
+
+    <h3>Bugs Found and Fixed:</h3>
+    <ol>
+        <li><b>Bug 1:</b> &lt;h1> tag closed nahi tha - Fixed with &lt;/h1></li>
+        <li><b>Bug 2:</b> &lt;p> tag closed nahi tha - Fixed with &lt;/p></li>
+        <li><b>Bug 3:</b> &lt;h2> ka closing &lt;h2> tha, &lt;/h2> hona chahiye tha</li>
+        <li><b>Bug 4:</b> &lt;li> tags close nahi the - Added &lt;/li></li>
+        <li><b>Bug 5:</b> &lt;ul> close nahi tha aur DOCTYPE missing tha - Added &lt;/ul> and &lt;!DOCTYPE html></li>
+    </ol>
+
+    <hr>
+
+    <h3>Corrected Final Code (My Resume):</h3>
+
+    <header>
+        <h1>VAISHNAVI SINGH</h1>
+        <p>Email: radha.singh.12345.radha.singh@gmail.com | Phone: 8127780277</p>
+        <p>Location: Shahjahanpur, UP</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>EDUCATION</h2>
+            <ul>
+                <li>BCA AI - 1st Year - Currently Pursuing</li>
+                <li>12th - Rana Public School</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>SKILLS</h2>
+            <p>HTML, VS Code, Git & GitHub, Terminal Basics</p>
+        </section>
+
+        <section>
+            <h2>OBJECTIVE</h2>
+            <p>As a BCA AI 1st year student, I want to learn web development and AI fundamentals.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p><b>- Vaishnavi Singh</b></p>
+    </footer>
+
+</body>
+</html>

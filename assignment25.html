@@ -1,0 +1,249 @@
+Q25-Submit the styled multi-page project with a short note on design choices.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Q25 Final Styled Multi-page Project by Vaishnavi Singh BCA AI - Complete HTML CSS project with design choices note">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277 - Shahjahanpur">
+    <title>Q25 - Final Styled Multi-Page Project - Vaishnavi Singh - BCA AI</title>
+
+    <!-- FONT PAIRING - Q23 -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* Q24 - DESIGN TOKEN STYLESHEET - Single Source of Truth */
+        :root {
+            --color-primary: #0F2C61;
+            --color-primary-light: #1a4a9c;
+            --color-accent: #FF6B35;
+            --color-accent-hover: #e55a2b;
+            --color-bg: #F8F9FA;
+            --color-surface: #FFFFFF;
+            --color-text: #212529;
+            --color-text-light: #6C757D;
+            --color-border: #DEE2E6;
+            --fs-xs: 12px;
+            --fs-sm: 14px;
+            --fs-base: 16px;
+            --fs-md: 18px;
+            --fs-lg: 24px;
+            --fs-xl: 32px;
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-full: 999px;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: var(--font-body); font-size: var(--fs-base); background: var(--color-bg); color: var(--color-text); line-height:1.6; }
+        h1,h2,h3 { font-family: var(--font-heading); color: var(--color-primary); }
+
+        /* HEADER - ID Selector */
+        #main-header { background: var(--color-primary); color: white; padding: var(--space-xl); text-align:center; }
+        #main-header h1 { color: white; font-size: var(--fs-xl); }
+        #main-header p { color: #dbe2f0; font-size: var(--fs-sm); }
+
+        /* NAV - Element + Pseudo-class Selector */
+        nav { background: #0b214a; padding: var(--space-md); text-align:center; position:sticky; top:0; z-index:100; }
+        nav a { color: white; text-decoration:none; margin: 0 var(--space-sm); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-full); font-size: var(--fs-sm); font-family: var(--font-heading); }
+        nav a:hover { background: var(--color-accent); color: white; }
+
+        /* CLASS SELECTOR - Reusable */
+        .container { max-width: 1000px; margin: var(--space-lg) auto; padding: 0 var(--space-md); }
+        .card { background: var(--color-surface); padding: var(--space-lg); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); margin-bottom: var(--space-lg); border: 1px solid var(--color-border); }
+        .card h2 { border-left: 4px solid var(--color-accent); padding-left: var(--space-md); margin-bottom: var(--space-md); font-size: var(--fs-lg); }
+        .btn { display:inline-block; padding: var(--space-sm) var(--space-lg); border-radius: var(--radius-full); text-decoration:none; font-family: var(--font-heading); font-size: var(--fs-sm); margin: var(--space-sm); }
+        .btn-primary { background: var(--color-primary); color: white; }
+        .btn-accent { background: var(--color-accent); color: white; }
+        .btn:hover { opacity:0.9; }
+
+        /* ATTRIBUTE SELECTOR */
+        input[type="text"], input[type="email"], select, textarea { width: 95%; padding: var(--space-sm); border: 2px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-body); margin-top: var(--space-sm); }
+        input[type="text"]:focus, input[type="email"]:focus { border-color: var(--color-accent); outline:none; }
+
+        /* Layout */
+        .grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+        .profile { width:120px; height:120px; border-radius:50%; border:4px solid var(--color-accent); }
+        .tag { background: var(--color-accent); color:white; padding: var(--space-sm) var(--space-md); border-radius: var(--radius-full); font-size: var(--fs-xs); margin:2px; display:inline-block; font-family: var(--font-heading); }
+
+        @media(max-width:700px){ .grid-2{ grid-template-columns:1fr; } nav a{ display:inline-block; margin:4px; } }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <h1>Vaishnavi Singh - BCA AI Final Project</h1>
+        <p>Q25 - Styled Multi-Page Project | 8127780277 | Shahjahanpur | Rana Public School | GitHub: vaishnavisingh734/assignment</p>
+        <p>Q1 to Q25 Complete - HTML to CSS Journey | Last Updated: Final Submission</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#resume">Resume (Q23)</a>
+        <a href="#registration">Registration (Q16)</a>
+        <a href="#contact">Contact (Q17)</a>
+        <a href="#design-note">Design Choices (Q25 Note)</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- HOME - Q20 content but styled -->
+        <section id="home" class="card">
+            <h2>HOME - Welcome to My Complete Journey</h2>
+            <div class="grid-2">
+                <div>
+                    <img src="image.png.png" alt="Vaishnavi Singh BCA AI Student Final Styled Project Photo" class="profile">
+                    <h3>Vaishnavi Singh</h3>
+                    <p class="btn-accent" style="padding:2px 10px; display:inline-block; border-radius:20px;">BCA AI 1st Year - Shahjahanpur</p>
+                    <p style="margin-top:10px;">I started from Q1 - What happens when you type URL? to Q25 Final Styled Project. This file is the styled version of Q20 multi-page HTML-only project.</p>
+                    <p><span class="tag">HTML5</span> <span class="tag">CSS3</span> <span class="tag">Design Tokens</span> <span class="tag">GitHub</span></p>
+                </div>
+                <div>
+                    <h3>Quick Stats</h3>
+                    <table style="width:100%; border-collapse:collapse;">
+                        <tr><td style="padding:8px; border-bottom:1px solid var(--color-border);"><strong>Total Assignments</strong></td><td style="padding:8px; border-bottom:1px solid var(--color-border);">Q1-Q25 Completed</td></tr>
+                        <tr><td style="padding:8px; border-bottom:1px solid var(--color-border);"><strong>GitHub Repo</strong></td><td style="padding:8px; border-bottom:1px solid var(--color-border);">vaishnavisingh734/assignment</td></tr>
+                        <tr><td style="padding:8px; border-bottom:1px solid var(--color-border);"><strong>Contact</strong></td><td style="padding:8px; border-bottom:1px solid var(--color-border);">8127780277</td></tr>
+                        <tr><td style="padding:8px;"><strong>Email</strong></td><td style="padding:8px;">radha.singh.12345.radha.singh@gmail.com</td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="card">
+            <h2>ABOUT - Module Wise Learning</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Module 1: Basics Q1-Q5</h3>
+                    <ul style="margin-left:20px; font-size:var(--fs-sm);">
+                        <li><a href="assignment1.html">Q1 - URL to Page Process</a></li>
+                        <li><a href="assignment2.html">Q2 - HTML History</a></li>
+                        <li><a href="assignment4.html">Q4-Q5 - Git & GitHub</a></li>
+                    </ul>
+                    <h3 style="margin-top:16px;">Module 2: Tags Q6-Q12</h3>
+                    <ul style="margin-left:20px; font-size:var(--fs-sm);">
+                        <li><a href="assignment8.html">Q8 - Hyperlinks</a></li>
+                        <li><a href="assignment11.html">Q11 - Internal Navigation</a></li>
+                        <li><a href="assignment12.html">Q12 - Alt Attributes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Module 3: Advanced Q13-Q20</h3>
+                    <ul style="margin-left:20px; font-size:var(--fs-sm);">
+                        <li><a href="assignment14.html">Q14 - Semantic Tags</a></li>
+                        <li><a href="assignment15.html">Q15 - Final Portfolio</a></li>
+                        <li><a href="assignment16.html">Q16 - Student Form</a></li>
+                        <li><a href="assignment18.html">Q18 - Size Chart Table rowspan/colspan</a></li>
+                        <li><a href="assignment19.html">Q19 - Meta Tags Audit</a></li>
+                        <li><a href="assignment20.html">Q20 - HTML Only Multi-page</a></li>
+                    </ul>
+                    <h3 style="margin-top:16px;">Module 4: CSS Q21-Q25</h3>
+                    <ul style="margin-left:20px; font-size:var(--fs-sm);">
+                        <li><a href="assignment21.html">Q21 - Lightly Styled Page</a></li>
+                        <li><a href="assignment22.html">Q22 - 4 Selector Types</a></li>
+                        <li><a href="assignment23.html">Q23 - Resume Font Pairing & Palette</a></li>
+                        <li><a href="assignment24.html">Q24 - Design Tokens CSS Variables</a></li>
+                        <li><strong>Q25 - This Final Styled Project</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESUME - Q23 Content -->
+        <section id="resume" class="card">
+            <h2>RESUME - Styled Version (Q23 Implementation)</h2>
+            <p>Same as Q23 but now integrated in final project. Uses Poppins + Inter font pairing and Navy #0F2C61 + Orange #FF6B35 palette.</p>
+            <p><strong>Vaishnavi Singh</strong> - BCA AI Student - Skilled in HTML5, CSS3, GitHub, Tables, Forms, Responsive Design. Location Shahjahanpur. <a href="assignment23.html" class="btn btn-accent" style="font-size:12px;">View Full Q23 Resume →</a></p>
+        </section>
+
+        <!-- REGISTRATION - Q16 -->
+        <section id="registration" class="card">
+            <h2>REGISTRATION - Student Form (Q16 Styled)</h2>
+            <div class="grid-2">
+                <form>
+                    <label>Full Name (text):</label><br>
+                    <input type="text" value="Vaishnavi Singh"><br><br>
+                    <label>Email (email):</label><br>
+                    <input type="email" value="radha.singh.12345.radha.singh@gmail.com"><br><br>
+                    <label>Course (select):</label><br>
+                    <select><option selected>BCA AI 1st Year</option><option>BCA General</option></select><br><br>
+                    <a href="assignment16.html" class="btn btn-primary">Open Full Q16 Form →</a>
+                </form>
+                <div style="background:var(--color-bg); padding:16px; border-radius:8px;">
+                    <h3>Q16 Learning:</h3>
+                    <p style="font-size:var(--fs-sm);">Used text, email, password, number, date, radio, checkbox, select, textarea. This is mini version, full version in assignment16.html with all validation.</p>
+                    <p style="font-size:var(--fs-sm); color:var(--color-text-light);">CSS Improvement in Q25: input[type="text"] attribute selector + :focus pseudo-class added.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT - Q17 -->
+        <section id="contact" class="card">
+            <h2>CONTACT - Contact Form (Q17 Styled)</h2>
+            <div class="grid-2">
+                <form>
+                    <label>Your Name:</label><br>
+                    <input type="text" placeholder="Enter name"><br><br>
+                    <label>Message:</label><br>
+                    <textarea rows="3" placeholder="Message for Vaishnavi Singh"></textarea><br><br>
+                    <button class="btn btn-accent" type="button">Send Message</button>
+                    <button class="btn btn-primary" type="button" style="background:var(--color-text-light);">Clear</button>
+                </form>
+                <div>
+                    <p><strong>Contact Direct:</strong><br>📞 8127780277<br>📧 radha.singh.12345.radha.singh@gmail.com<br>📍 Shahjahanpur, UP<br>🔗 github.com/vaishnavisingh734/assignment</p>
+                    <p style="font-size:var(--fs-sm); margin-top:10px;"><a href="assignment17.html">Open Full Q17 Job Form with every input type →</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q25 DESIGN CHOICES NOTE - MOST IMPORTANT FOR THIS QUESTION -->
+        <section id="design-note" class="card" style="border-left: 6px solid var(--color-accent); background: #fffbf8;">
+            <h2>Q25 - SHORT NOTE ON DESIGN CHOICES (Required for Submission)</h2>
+            
+            <h3>1. Colour Palette Choice - Why Navy #0F2C61 + Orange #FF6B35?</h3>
+            <p><strong>Primary #0F2C61 Deep Navy:</strong> Professional, trust, academic. Resume/portfolio ke liye best. Dark colour header/footer ke liye use kiya taki content white cards me pop kare.</p>
+            <p><strong>Accent #FF6B35 Orange:</strong> Energy, creativity, call-to-action. Navy ka complementary colour hai, high contrast deta hai (WCAG accessible). Buttons, highlights, left borders ke liye use kiya.</p>
+            <p><strong>Background #F8F9FA Light Grey:</strong> Eye strain kam karta hai, pure white se better readability. 60-30-10 Rule follow kiya: 60% light background, 30% navy, 10% orange.</p>
+
+            <h3 style="margin-top:16px;">2. Font Pairing Choice - Why Poppins + Inter?</h3>
+            <p><strong>Heading Font: Poppins (700 Bold):</strong> Modern geometric sans-serif, headings ko strong aur memorable banata hai. Google Fonts me most used for portfolios.</p>
+            <p><strong>Body Font: Inter (400 Regular):</strong> Designed for screens, super readable even at 14px. Long paragraphs ke liye best. Both fonts sans-serif family ke hain, isliye pair ache se hota hai.</p>
+            <p><strong>Scale System:</strong> --fs-xs 12px labels, --fs-base 16px body (browser default), --fs-lg 24px sections, --fs-xl 32px hero. Consistent rhythm.</p>
+
+            <h3 style="margin-top:16px;">3. Design System Choice - Why CSS Variables (Design Tokens)?</h3>
+            <p><strong>Q24 ke tokens ko Q25 me reuse kiya:</strong> :root me saare colours, font sizes, spacing ek jagah define kiye. Benefit: Agar kal client bole "Orange ko red karo" to sirf --color-accent change karna hai, poori 25 pages update ho jayengi. Real companies (Google Material, Shopify Polaris) yahi karti hain.</p>
+
+            <h3 style="margin-top:16px;">4. Layout & Selector Choices</h3>
+            <p><strong>Q22 ke 4+ Selectors used:</strong> Universal (*) reset, Element (h2, nav), ID (#main-header), Class (.card, .btn), Attribute (input[type="text"]), Pseudo-class (nav a:hover, :focus). Requirement 4 tha, 6 use kiye.</p>
+            <p><strong>Responsive:</strong> Grid-2 desktop me 2 columns, mobile me 1 column (@media 700px). Sticky nav for multi-page navigation (Q11 concept).</p>
+            <p><strong>Evolution:</strong> Q20 = HTML-only, Q21 = lightly styled, Q23 = resume styled, Q24 = tokens, Q25 = Final complete styled system with all concepts merged.</p>
+
+            <div style="background:var(--color-primary); color:white; padding:16px; border-radius:8px; margin-top:16px;">
+                <p style="color:white; font-family:var(--font-heading);"><strong>Final Submission Summary - Vaishnavi Singh:</strong></p>
+                <p style="color:#dbe2f0; font-size:var(--fs-sm);">This Q25 file is the final styled multi-page project. It contains Home (Q20), About (Q3-Q5), Resume (Q23), Registration (Q16), Contact (Q17) sections in ONE styled page using Q24 design tokens. Short note on design choices included as required. All 25 assignments linked and pushed to GitHub: vaishnavisingh734/assignment. Ready for evaluation.</p>
+                <p style="margin-top:10px;"><a href="assignment20.html" class="btn" style="background:white; color:var(--color-primary);">View Q20 HTML-Only</a> <a href="assignment15.html" class="btn" style="background:var(--color-accent); color:white;">View Q15 Portfolio</a></p>
+            </div>
+
+        </section>
+
+    </div>
+
+    <footer id="main-header" style="margin-top:24px;">
+        <h3 style="color:white;">Q25 Final Submission - Styled Multi-Page Project Complete</h3>
+        <p>Vaishnavi Singh | BCA AI 1st Year | Shahjahanpur | 8127780277 | radha.singh.12345.radha.singh@gmail.com</p>
+        <p>Repository: github.com/vaishnavisingh734/assignment | Total Files: assignment1.html to assignment25.html + image.png.png</p>
+        <p style="margin-top:10px; font-size:var(--fs-xs); color:#a8b9d9;">© 2025-26 Vaishnavi Singh - Q25 Design Choices: Poppins+Inter Fonts, Navy #0F2C61 + Orange #FF6B35 Palette, CSS Variables Design Tokens, 6 Selector Types, Responsive Grid</p>
+    </footer>
+
+</body>
+</html>

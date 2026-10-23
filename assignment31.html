@@ -1,0 +1,242 @@
+Q31-Create a simple responsive menu bar using display:flex.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q31 - Responsive Menu Bar with Display Flex - Vaishnavi Singh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary:#0F2C61; --accent:#FF6B35; --bg:#F8F9FA; --surface:#fff; --border:#DEE2E6; }
+        *{margin:0; padding:0; box-sizing:border-box;}
+        body{font-family:Inter, sans-serif; background:var(--bg);}
+        h1,h2{font-family:Poppins, sans-serif; color:var(--primary);}
+
+        /* ========== Q31 - FLEX MENU BAR - MAIN TASK ========== */
+        .navbar {
+            display: flex; /* MAIN REQUIREMENT - display:flex */
+            flex-direction: row;
+            justify-content: space-between; /* Logo left, menu right */
+            align-items: center; /* Vertically center */
+            flex-wrap: wrap; /* Wrap on small screen */
+            background: var(--primary);
+            padding: 12px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-family: Poppins, sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid var(--accent);
+        }
+
+        .menu {
+            display: flex; /* Flex for menu items */
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .menu li a {
+            display: block;
+            color: #dbe2f0;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-family: Poppins, sans-serif;
+            transition: 0.2s;
+        }
+        .menu li a:hover, .menu li a.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .menu-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 10px;
+        }
+        .btn {
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-family: Poppins;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-accent { background: var(--accent); color: white; }
+        .btn-outline { background: transparent; border:1px solid #dbe2f0; color: #dbe2f0; }
+
+        /* Hamburger - hidden on desktop */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .hamburger span {
+            width: 22px;
+            height: 2.5px;
+            background: white;
+            border-radius: 2px;
+            display: block;
+            transition: 0.3s;
+        }
+
+        /* ========== RESPONSIVE - FLEX WRAP ========== */
+        @media (max-width: 800px) {
+            .navbar {
+                justify-content: space-between;
+            }
+            .hamburger {
+                display: flex; /* Show on mobile */
+            }
+            .menu {
+                display: none; /* Hide by default on mobile */
+                flex-direction: column; /* Stack vertically */
+                width: 100%;
+                align-items: flex-start;
+                background: #0b214a;
+                margin-top: 12px;
+                padding: 12px;
+                border-radius: 10px;
+                order: 3; /* Push below */
+            }
+            .menu.show {
+                display: flex; /* Show when hamburger clicked */
+            }
+            .menu li { width: 100%; }
+            .menu li a { width: 100%; }
+            .menu-actions { width:100%; margin-left:0; margin-top:10px; justify-content: flex-start; }
+        }
+
+        /* Demo content */
+        .container { max-width: 1000px; margin: 20px auto; padding: 0 15px; }
+        .card { background: var(--surface); padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 20px; border: 1px solid var(--border); }
+        .code { background:#212121; color:#e0e0e0; padding:12px; border-radius:6px; font-family:monospace; font-size:12px; overflow:auto; }
+        .flex-demo { display:flex; gap:10px; flex-wrap:wrap; margin:15px 0; }
+        .flex-demo div { background:var(--primary); color:white; padding:12px 18px; border-radius:8px; font-size:13px; font-family:Poppins; }
+    </style>
+</head>
+<body>
+
+    <!-- Q31 MENU BAR -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <img src="image.png.png" alt="Vaishnavi Singh Logo" class="logo-img">
+            Vaishnavi Singh | BCA AI
+        </a>
+
+        <!-- Hamburger for mobile -->
+        <div class="hamburger" onclick="document.querySelector('.menu').classList.toggle('show')">
+            <span></span><span></span><span></span>
+        </div>
+
+        <ul class="menu">
+            <li><a href="assignment25.html" class="active">Home</a></li>
+            <li><a href="assignment15.html">Portfolio Q15</a></li>
+            <li><a href="assignment20.html">Projects Q20</a></li>
+            <li><a href="assignment23.html">Resume Q23</a></li>
+            <li><a href="assignment30.html">Cards Q30</a></li>
+            <li class="menu-actions">
+                <a href="tel:8127780277" class="btn btn-outline">8127780277</a>
+                <a href="assignment25.html" class="btn btn-accent">Final Q25</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <div class="card" style="border-left:5px solid var(--accent);">
+            <h1>Q31 - Responsive Menu Bar using Display: Flex</h1>
+            <p><strong>Vaishnavi Singh | 8127780277 | Shahjahanpur | BCA AI 1st Year</strong></p>
+            <p style="font-size:14px; color:#6C757D; margin-top:5px;">This navbar is built with <code>display:flex</code> only. Resize browser window or open in mobile to see responsive flex-wrap hamburger menu. No external framework used.</p>
+
+            <div class="flex-demo">
+                <div>display: flex</div>
+                <div>justify-content: space-between</div>
+                <div>align-items: center</div>
+                <div>flex-wrap: wrap</div>
+                <div>flex-direction: row → column (mobile)</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>How Flex Works in This Navbar (Viva Note)</h2>
+            <div class="code">
+.navbar {
+  display: flex; /* Makes children flex items in a row */
+  flex-direction: row; /* Horizontal layout - default */
+  justify-content: space-between; /* Logo left, menu right - main axis */
+  align-items: center; /* Vertically center - cross axis */
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.menu {
+  display: flex; /* Menu items also flex row */
+  flex-direction: row;
+  gap: 8px; /* Space between links */
+}
+
+@media (max-width:800px) {
+  .menu {
+    flex-direction: column; /* Stack vertically on mobile */
+    width: 100%;
+    display: none; /* Hidden */
+  }
+  .menu.show { display: flex; } /* Shown on hamburger click */
+  .hamburger { display: flex; }
+}
+            </div>
+
+            <h3 style="margin-top:15px;">Why Flex Better Than Float?</h3>
+            <p style="font-size:14px;">Old method float:left + clearfix needed. Flex me 1 line <code>display:flex</code> se horizontal, <code>justify-content</code> se left/right alignment, <code>align-items</code> se vertical center. No clearfix, no extra markup. Responsive ke liye <code>flex-wrap:wrap</code> aur <code>flex-direction:column</code> on mobile.</p>
+            <p style="font-size:13px; margin-top:10px;"><strong>Vaishnavi Singh - Q31 Completed - 8127780277</strong></p>
+        </div>
+
+        <div class="card">
+            <h2>Live Demo - Second Navbar Variant - Centered</h2>
+            <p style="font-size:13px; color:#6C757D; margin-bottom:10px;">Same flex, different justify-content: center (for landing pages)</p>
+            
+            <!-- Second variant for demo -->
+            <div style="display:flex; justify-content:center; align-items:center; gap:15px; background:#0b214a; padding:12px; border-radius:8px; flex-wrap:wrap;">
+                <a href="#" style="color:white; text-decoration:none; font-family:Poppins; font-size:14px;">Home</a>
+                <a href="#" style="color:#dbe2f0; text-decoration:none; font-size:14px;">About</a>
+                <a href="#" style="color:#dbe2f0; text-decoration:none; font-size:14px;">Services</a>
+                <a href="#" style="color:var(--accent); text-decoration:none; font-family:Poppins; font-size:14px; background:white; padding:6px 12px; border-radius:20px;">Contact 8127780277</a>
+            </div>
+            <p style="font-size:11px; margin-top:8px;">↑ This uses <code>display:flex; justify-content:center;</code> - Items centered</p>
+        </div>
+
+        <div class="card" style="background:var(--primary); color:white;">
+            <h2 style="color:white;">Viva Answer - Explain display:flex Menu</h2>
+            <p style="color:#dbe2f0; font-size:14px;">"Ma'am maine navbar ko <code>display:flex</code> se banaya hai. Parent <code>.navbar</code> pe <code>display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;</code> lagaya hai taaki logo left me aur menu right me rahe aur vertically center ho. Menu ul bhi <code>display:flex</code> hai row me. Mobile pe <code>@media max-width:800px</code> me menu ko <code>flex-direction:column</code> aur <code>display:none</code> kiya, hamburger <code>display:flex</code> dikhaya. JS se sirf <code>classList.toggle('show')</code> se show/hide hota hai. Flex se bina float ke clean responsive menu banta hai."</p>
+            <p style="margin-top:10px;"><a href="assignment30.html" style="color:#ffcc80;">← Q30 Cards</a> | <a href="assignment25.html" style="color:white;">Q25 Final →</a></p>
+        </div>
+
+    </div>
+
+</body>
+</html>

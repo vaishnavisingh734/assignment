@@ -1,0 +1,223 @@
+Q45-Submit the finished, fully responsive landing-page project.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q45 - Finished Fully Responsive Landing Page Project - Vaishnavi Singh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ========== Q45 - FINISHED FULLY RESPONSIVE - Q44 SKELETON + BREAKPOINTS ========== */
+        :root { --primary:#0F2C61; --accent:#FF6B35; --bg:#F8F9FA; --surface:#fff; --border:#DEE2E6; --text:#212529; --text-light:#6C757D; }
+        *{margin:0; padding:0; box-sizing:border-box;}
+        body{font-family:Inter, sans-serif; background:var(--bg); color:var(--text); line-height:1.6;}
+        h1,h2,h3{font-family:Poppins, sans-serif; color:var(--primary);}
+
+        /* DESKTOP BASE - Same as Q44 */
+        .navbar { background:var(--primary); padding:16px 40px; display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; position:sticky; top:0; z-index:100; }
+        .logo { display:flex; align-items:center; gap:10px; color:white; font-family:Poppins; font-weight:700; font-size:18px; }
+        .logo-img { width:36px; height:36px; border-radius:50%; background:white; border:2px solid var(--accent); }
+        .nav-links { display:flex; gap:12px; list-style:none; }
+        .nav-links a { color:#dbe2f0; text-decoration:none; font-family:Poppins; font-size:14px; padding:8px 16px; border-radius:20px; }
+        .nav-links a.active { background:var(--accent); color:white; }
+
+        .hero { max-width:1200px; margin:0 auto; background:white; display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; padding:60px 40px; align-items:center; }
+        .hero-content { display:flex; flex-direction:column; gap:16px; }
+        .hero-content h1 { font-size:42px; line-height:1.2; }
+        .hero-content h1 span { color:var(--accent); }
+        .hero-content p { color:var(--text-light); font-size:16px; }
+        .btn { padding:12px 24px; border-radius:25px; font-family:Poppins; font-size:14px; text-decoration:none; display:inline-block; }
+        .btn-primary{background:var(--primary); color:white;} .btn-accent{background:var(--accent); color:white;}
+        .hero-image { background:linear-gradient(135deg, var(--primary), #1a4a9c); border-radius:20px; aspect-ratio:1/1; display:grid; place-items:center; }
+        .hero-image img { width:70%; height:70%; border-radius:50%; border:5px solid white; background:white; object-fit:cover; }
+
+        .features { max-width:1200px; margin:0 auto; padding:60px 40px; background:var(--bg); }
+        .features h2 { text-align:center; font-size:28px; margin-bottom:30px; }
+        .feature-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; }
+        .feature-card { background:white; padding:24px; border-radius:12px; border:1px solid var(--border); }
+
+        .products { max-width:1200px; margin:0 auto; padding:60px 40px; background:white; }
+        .products h2 { font-size:28px; margin-bottom:20px; }
+        .product-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; }
+        .p-card { border:1px solid var(--border); border-radius:12px; overflow:hidden; background:white; transition:0.3s; }
+        .p-card:hover{transform:translateY(-4px); box-shadow:0 10px 20px rgba(0,0,0,0.1);}
+        .p-img { height:160px; background:#fff8f0; display:grid; place-items:center; }
+        .p-img img { max-width:60%; max-height:60%; object-fit:contain; }
+        .p-body { padding:16px; }
+
+        .footer { max-width:1200px; margin:0 auto; background:var(--primary); color:white; padding:40px; display:grid; grid-template-columns:repeat(4, 1fr); gap:30px; }
+        .footer h4 { color:white; margin-bottom:10px; }
+        .footer p, .footer a { color:#a8b9d9; font-size:13px; text-decoration:none; display:block; margin-top:6px; }
+
+        .test-bar { position:fixed; bottom:0; left:0; right:0; background:#212121; color:white; padding:8px 12px; display:flex; justify-content:space-between; font-family:monospace; font-size:11px; z-index:999; }
+        .test-bar span.active { background:var(--accent); padding:3px 8px; border-radius:4px; }
+
+        /* ========== Q45 - BREAKPOINTS ADDED TO Q44 SKELETON - FULLY RESPONSIVE ========== */
+
+        /* BREAKPOINT 1 - TABLET LANDSCAPE 1024px */
+        @media (max-width: 1024px) {
+            .navbar { padding:14px 24px; }
+            .hero { grid-template-columns:1fr; gap:30px; padding:40px 24px; text-align:center; }
+            .hero-content { align-items:center; }
+            .hero-image { max-width:400px; margin:0 auto; }
+            .hero-content h1 { font-size:36px; }
+            .features, .products { padding:40px 24px; }
+            .feature-grid { grid-template-columns:repeat(2, 1fr); }
+            .product-grid { grid-template-columns:repeat(2, 1fr); }
+            .footer { grid-template-columns:repeat(2, 1fr); padding:30px 24px; }
+        }
+
+        /* BREAKPOINT 2 - TABLET PORTRAIT / MOBILE LANDSCAPE 768px */
+        @media (max-width: 768px) {
+            .navbar { flex-direction:column; gap:12px; padding:12px 16px; align-items:flex-start; }
+            .nav-links { flex-wrap:wrap; gap:6px; }
+            .nav-links a { padding:6px 12px; font-size:12px; }
+            .hero { padding:30px 16px; gap:20px; }
+            .hero-content h1 { font-size:28px; }
+            .hero-content p { font-size:14px; }
+            .btn { padding:10px 18px; font-size:13px; }
+            .features h2, .products h2 { font-size:22px; }
+            .features, .products { padding:30px 16px; }
+            .feature-grid { grid-template-columns:1fr; gap:16px; }
+            .product-grid { grid-template-columns:repeat(2, 1fr); gap:12px; }
+            .footer { grid-template-columns:1fr; gap:20px; padding:24px 16px; text-align:center; }
+        }
+
+        /* BREAKPOINT 3 - MOBILE 480px */
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size:24px; }
+            .product-grid { grid-template-columns:1fr; }
+            .hero-image { max-width:300px; }
+            .features, .products { padding:24px 12px; }
+            .p-img { height:140px; }
+        }
+
+        .info { max-width:1200px; margin:20px auto 70px; background:white; padding:20px; border-radius:10px; border-left:5px solid var(--accent); }
+        .code { background:#212121; color:#e0e0e0; padding:14px; border-radius:6px; font-family:monospace; font-size:11px; overflow:auto; margin-top:10px; white-space:pre-wrap; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo"><img src="image.png.png" alt="Vaishnavi Singh Logo" class="logo-img"> Vaishnavi Singh | BCA AI - Q45 Final Responsive Landing</div>
+        <ul class="nav-links">
+            <li><a href="assignment44.html">Q44 Skeleton Only</a></li>
+            <li><a href="assignment35.html">Q35 Flex</a></li>
+            <li><a href="assignment40.html">Q40 Grid</a></li>
+            <li><a href="#" class="active">Q45 Final Responsive - This</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span style="background:#fff2ed; color:var(--accent); border:1px solid #ffd8c2; font-size:12px; font-family:Poppins; padding:6px 14px; border-radius:20px; width:fit-content;">Q45 - SUBMIT THE FINISHED, FULLY RESPONSIVE LANDING-PAGE PROJECT - Vaishnavi Singh 8127780277</span>
+            <h1>Finished <span>Fully Responsive</span> Landing Page - Q44 + Breakpoints</h1>
+            <p>This is Q45 final submission - Q44 skeleton + base desktop styles + 3 breakpoints = fully responsive landing page. Q44 had only desktop: 1200px, 4 cols, 42px heading. Q45 adds: 1024px Tablet, 768px Mobile, 480px Small Mobile. Now responsive on all devices. Tested on Desktop 1200px, Laptop 1024px, Tablet 768px, Mobile 480px, Small 360px. Resize window - see bottom bar live breakpoint.</p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;">
+                <a href="assignment44.html" class="btn btn-primary" style="background:white; color:var(--primary); border:2px solid var(--border);">← View Q44 Skeleton Only (Desktop)</a>
+                <a href="#" class="btn btn-accent">Q45 Final Responsive → This Page</a>
+            </div>
+            <p style="font-size:11px; color:var(--text-light); margin-top:8px;">Q44 → Q45: Added @media 1024px, 768px, 480px - Desktop 4 cols → Tablet 2 cols → Mobile 1 col - Fully responsive landing page project finished</p>
+        </div>
+        <div class="hero-image">
+            <img src="image.png.png" alt="Vaishnavi Singh Q45 Finished Fully Responsive Landing Page Project">
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Q44 Skeleton + Q45 Breakpoints = Fully Responsive</h2>
+        <div class="feature-grid">
+            <div class="feature-card" style="border-left:4px solid var(--primary);"><h3>Desktop Base - Q44</h3><p>Q44: max-width 1200px, padding 60px 40px, hero 42px, feature-grid 3 cols, product-grid 4 cols, footer 4 cols. No media queries. Only desktop perfect.</p><p style="margin-top:8px; font-size:11px; background:#eef2ff; padding:5px 8px; border-radius:4px;">Q44 - Skeleton + Desktop</p></div>
+            <div class="feature-card" style="border-left:4px solid var(--accent);"><h3>Breakpoints Added - Q45</h3><p>Q45: @media 1024px tablet 2 cols, @media 768px mobile 1 col navbar column, @media 480px small mobile single col. hero 42px→36px→28px→24px responsive.</p><p style="margin-top:8px; font-size:11px; background:#fff2ed; padding:5px 8px; border-radius:4px;">Q45 - Breakpoints Added</p></div>
+            <div class="feature-card" style="border-left:4px solid #28a745;"><h3>Fully Responsive - Final Q45</h3><p>Result: Desktop 1200px 4 cols, Tablet 1024px 2 cols, Mobile 768px 1 col, Small 480px 1 col compact. Tested, no horizontal scroll, images responsive, fonts fluid.</p><p style="margin-top:8px; font-size:11px; background:#d4edda; padding:5px 8px; border-radius:4px;">Q45 - Finished Fully Responsive</p></div>
+        </div>
+    </section>
+
+    <section class="products">
+        <h2>Products Grid - Responsive Test: 4 → 2 → 1 Columns</h2>
+        <p style="color:var(--text-light); margin-bottom:16px; font-size:14px;">Resize window: Desktop 4 cols, Tablet 1024px 2 cols, Mobile 768px 2 cols, Small 480px 1 col - Q44 to Q45 responsive transformation</p>
+        <div class="product-grid">
+            <div class="p-card"><div class="p-img"><img src="image.png.png" alt="Q44"></div><div class="p-body"><h3>Q44 - Skeleton Only</h3><p style="font-size:12px; color:var(--text-light);">Desktop only - 4 cols fixed - No responsive</p><a href="assignment44.html" class="btn btn-primary" style="padding:6px 12px; font-size:11px; margin-top:8px;">View Q44 Desktop Only</a></div></div>
+            <div class="p-card"><div class="p-img"><img src="image.png.png" alt="Q45 Breakpoints"></div><div class="p-body"><h3>Q45 - Breakpoints Added</h3><p style="font-size:12px; color:var(--text-light);">Added 1024px, 768px, 480px - Tablet Mobile</p><span style="background:var(--accent); color:white; padding:5px 10px; border-radius:20px; font-size:10px; font-family:Poppins; display:inline-block; margin-top:8px;">3 Breakpoints</span></div></div>
+            <div class="p-card"><div class="p-img"><img src="image.png.png" alt="Q43 Grid Flex"></div><div class="p-body"><h3>Q43 - Grid + Flex Both</h3><p style="font-size:12px; color:var(--text-light);">Reference landing - Grid for layout, Flex for components</p><a href="assignment43.html" class="btn btn-primary" style="padding:6px 12px; font-size:11px; margin-top:8px;">View Q43 Both</a></div></div>
+            <div class="p-card" style="border:2px solid var(--accent);"><div class="p-img"><img src="image.png.png" alt="Q45 Final"></div><div class="p-body"><h3 style="color:var(--accent);">Q45 - Final Responsive - This</h3><p style="font-size:12px; color:var(--text-light);">Finished fully responsive landing page - Q44 + breakpoints - You are here</p><span style="background:var(--primary); color:white; padding:5px 10px; border-radius:20px; font-size:10px; font-family:Poppins; display:inline-block; margin-top:8px;">Final - Q1-Q45 Done!</span></div></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div><h4>Q44 → Q45 Workflow</h4><p>Q44: HTML skeleton + base desktop styles - max-width 1200px, 4 cols, 42px<br>Q45: Add breakpoints 1024px 768px 480px - Responsive<br>Professional workflow - Desktop-first</p><p style="margin-top:8px;"><b>Vaishnavi Singh - Q45 Final</b><br>8127780277 - BCA AI</p></div>
+        <div><h4>Breakpoints Added in Q45</h4><p>@media 1024px: hero 1fr, feature 2 cols, product 2 cols, footer 2 cols, h1 36px</p><p>@media 768px: navbar column, hero stacked, feature 1 col, footer 1 col, h1 28px</p><p>@media 480px: product 1 col, h1 24px, padding reduced</p><p>3 breakpoints minimum as required</p></div>
+        <div><h4>Testing - Fully Responsive</h4><p>✓ Desktop 1200px 4 cols</p><p>✓ Laptop 1024px 2 cols</p><p>✓ Tablet 768px 1-2 cols</p><p>✓ Mobile 480px 1 col</p><p>✓ Small 360px 1 col compact</p><p>✓ No horizontal scroll</p><p>✓ Images responsive</p></div>
+        <div><h4>Q1-Q45 Complete!</h4><p>Q1-Q10 Basics<br>Q11-Q20 Intermediate<br>Q21-Q30 Advanced Cards<br>Q31-Q35 Flexbox Series<br>Q36-Q40 Grid Series<br>Q41-Q42 Responsive Audit<br>Q43 Grid+Flex Both<br>Q44-Q45 Final Landing Project<br><b style="color:white;">All 45 Assignments Done!</b></p></div>
+    </footer>
+
+    <div class="test-bar" id="testBar">
+        <div>Q45 FINAL TEST - Width: <span id="width">0</span>px | <span id="bp">Breakpoint</span> | Q44 Desktop Only → Q45 Fully Responsive</div>
+        <div><span id="b1024">1024 Tablet</span> | <span id="b768">768 Mobile</span> | <span id="b480">480 Small</span> | <span id="bDesktop">Desktop</span></div>
+    </div>
+
+    <script>
+        function updateBar(){
+            const w = window.innerWidth;
+            document.getElementById('width').textContent=w;
+            const bp=document.getElementById('bp');
+            const bD=document.getElementById('bDesktop'), b1024=document.getElementById('b1024'), b768=document.getElementById('b768'), b480=document.getElementById('b480');
+            [bD,b1024,b768,b480].forEach(el=>el.className='');
+            if(w<=480){bp.textContent='Small Mobile (≤480px) - 1 col'; bp.className='active'; b480.className='active';}
+            else if(w<=768){bp.textContent='Mobile (≤768px) - 1-2 cols'; bp.className='active'; b768.className='active';}
+            else if(w<=1024){bp.textContent='Tablet (≤1024px) - 2 cols'; bp.className='active'; b1024.className='active';}
+            else {bp.textContent='Desktop (>1024px) - 4 cols Base'; bp.className='active'; bD.className='active';}
+        }
+        window.addEventListener('resize',updateBar); updateBar();
+    </script>
+
+    <div class="info">
+        <h2>Q45 - Final Fully Responsive Landing Page - Viva Note</h2>
+        <div class="code">/* Q44 - Only Desktop Base (No media queries) */
+.hero { max-width:1200px; display:grid; grid-template-columns:1.2fr 0.8fr; padding:60px 40px; }
+.hero h1 { font-size:42px; }
+.feature-grid { grid-template-columns:repeat(3, 1fr); } /* Desktop 3 cols */
+.product-grid { grid-template-columns:repeat(4, 1fr); } /* Desktop 4 cols */
+.footer { grid-template-columns:repeat(4, 1fr); }
+
+/* Q45 - Added Breakpoints to make Q44 Fully Responsive */
+
+/* BREAKPOINT 1 - 1024px Tablet Landscape */
+@media(max-width:1024px){
+  .hero { grid-template-columns:1fr; text-align:center; padding:40px 24px; }
+  .hero h1 { font-size:36px; } /* 42→36 */
+  .feature-grid { grid-template-columns:repeat(2, 1fr); } /* 3→2 cols */
+  .product-grid { grid-template-columns:repeat(2, 1fr); } /* 4→2 cols */
+  .footer { grid-template-columns:repeat(2, 1fr); } /* 4→2 cols */
+}
+
+/* BREAKPOINT 2 - 768px Mobile (Required) */
+@media(max-width:768px){
+  .navbar { flex-direction:column; align-items:flex-start; } /* Navbar stack */
+  .hero h1 { font-size:28px; } /* 36→28 */
+  .feature-grid { grid-template-columns:1fr; } /* 2→1 col */
+  .footer { grid-template-columns:1fr; } /* 2→1 col */
+  .features, .products { padding:30px 16px; } /* Padding reduce */
+}
+
+/* BREAKPOINT 3 - 480px Small Mobile (Required second breakpoint) */
+@media(max-width:480px){
+  .hero h1 { font-size:24px; } /* 28→24 */
+  .product-grid { grid-template-columns:1fr; } /* 2→1 col */
+  .hero { padding:24px 12px; }
+}
+
+/* TESTING:
+Desktop 1200px: hero 1.2fr 0.8fr, features 3 cols, products 4 cols, footer 4 cols, h1 42px
+Tablet 1024px: hero 1fr stacked, features 2 cols, products 2 cols, footer 2 cols, h1 36px
+Mobile 768px: navbar column, features 1 col, products 2 cols, footer 1 col, h1 28px
+Small 480px: products 1 col, h1 24px, compact padding
+No horizontal scroll, images width 100% height auto, live breakpoint bar at bottom
+*/</div>
+        <p style="font-size:13px; margin-top:10px;"><strong>Q44 vs Q45:</strong> Q44 me sirf HTML skeleton aur base desktop styles push kiye the - max-width 1200px, 4 columns, no media queries, desktop-first. Q45 me usi Q44 pe 3 breakpoints add karke fully responsive banaya - 1024px tablet, 768px mobile, 480px small mobile. Ab ye finished fully responsive landing-page project hai jo har screen pe kaam karta hai. Bottom fixed bar live width aur active breakpoint show karta hai testing ke liye. Screenshots: 1200px desktop, 1024px tablet, 768px mobile, 480px small mobile.</p>
+        <p style="margin-top:8px; font-size:13px;"><strong>Vaishnavi Singh - Q45 Finished Fully Responsive Landing-Page Project Completed - 8127780277 - Q1-Q45 ALL 45 ASSIGNMENTS DONE! 🎉</strong></p>
+    </div>
+
+</body>
+</html>

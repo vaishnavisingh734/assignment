@@ -1,0 +1,264 @@
+Q24-Create a small design-token stylesheet (colours, font sizes) using CSS variables.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q24 - Design Token Stylesheet with CSS Variables - Vaishnavi Singh</title>
+
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           Q24 - DESIGN TOKEN STYLESHEET
+           All colours, font sizes, spacing in ONE place
+           ============================================ */
+        :root {
+            /* 1. COLOUR TOKENS */
+            --color-primary: #0F2C61;      /* Main Brand Colour */
+            --color-primary-light: #1a4a9c;
+            --color-accent: #FF6B35;      /* Call to Action */
+            --color-accent-hover: #e55a2b;
+            --color-bg: #F8F9FA;          /* Page Background */
+            --color-surface: #FFFFFF;     /* Card Background */
+            --color-text-primary: #212529; /* Main Text */
+            --color-text-secondary: #6C757D; /* Secondary Text */
+            --color-border: #DEE2E6;
+            --color-success: #28A745;
+            --color-error: #DC3545;
+
+            /* 2. FONT SIZE TOKENS - Scale System */
+            --fs-xs: 12px;    /* Small labels */
+            --fs-sm: 14px;    /* Secondary text */
+            --fs-base: 16px;  /* Body text - Default */
+            --fs-md: 18px;    /* Subheadings */
+            --fs-lg: 24px;    /* Section headings */
+            --fs-xl: 32px;    /* Main heading */
+            --fs-xxl: 40px;   /* Hero heading */
+
+            /* 3. FONT FAMILY TOKENS */
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+
+            /* 4. SPACING TOKENS */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-xxl: 48px;
+
+            /* 5. RADIUS & SHADOW TOKENS */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-full: 999px;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.08);
+            --shadow-md: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+        /* ============================================
+           USAGE - Sab jagah var(--token) use ho raha hai
+           ============================================ */
+        body {
+            font-family: var(--font-body);
+            font-size: var(--fs-base);
+            background-color: var(--color-bg);
+            color: var(--color-text-primary);
+            margin: 0;
+            padding: var(--space-lg);
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: var(--fs-xxl);
+            color: var(--color-primary);
+            margin-bottom: var(--space-md);
+        }
+        h2 {
+            font-family: var(--font-heading);
+            font-size: var(--fs-lg);
+            color: var(--color-primary);
+            border-left: 4px solid var(--color-accent);
+            padding-left: var(--space-md);
+        }
+        h3 {
+            font-family: var(--font-heading);
+            font-size: var(--fs-md);
+            color: var(--color-text-primary);
+        }
+
+        .token-card {
+            background: var(--color-surface);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-lg);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-surface);
+            font-size: var(--fs-sm);
+            font-family: var(--font-heading);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: var(--color-primary-light);
+        }
+
+        .btn-accent {
+            background-color: var(--color-accent);
+            color: var(--color-surface);
+            font-size: var(--fs-sm);
+            font-family: var(--font-heading);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-full);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-accent:hover {
+            background-color: var(--color-accent-hover);
+        }
+
+        .badge {
+            background: var(--color-accent);
+            color: var(--color-surface);
+            font-size: var(--fs-xs);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-full);
+            font-family: var(--font-heading);
+        }
+
+        .text-secondary {
+            color: var(--color-text-secondary);
+            font-size: var(--fs-sm);
+        }
+
+        /* Demo boxes for colour palette */
+        .color-box {
+            display: inline-block;
+            width: 100px;
+            height: 60px;
+            border-radius: var(--radius-md);
+            margin: var(--space-sm);
+            text-align: center;
+            line-height: 60px;
+            font-size: var(--fs-xs);
+            color: white;
+            font-weight: bold;
+            font-family: var(--font-heading);
+        }
+
+        .font-demo-xl { font-size: var(--fs-xl); font-family: var(--font-heading); color: var(--color-primary); }
+        .font-demo-lg { font-size: var(--fs-lg); font-family: var(--font-heading); }
+        .font-demo-base { font-size: var(--fs-base); }
+        .font-demo-sm { font-size: var(--fs-sm); color: var(--color-text-secondary); }
+        .font-demo-xs { font-size: var(--fs-xs); color: var(--color-text-secondary); }
+
+    </style>
+</head>
+<body>
+
+    <h1>Q24 - Design Token Stylesheet</h1>
+    <p class="text-secondary">Vaishnavi Singh | BCA AI 1st Year | 8127780277 | Shahjahanpur | All colours & font sizes using CSS Variables</p>
+
+    <div class="token-card">
+        <h2>What is Design Token? (Viva Question)</h2>
+        <p>Design token ek variable hota hai jo colour, font size, spacing jaise design values ko ek jagah store karta hai. <code>:root</code> me define karo aur poori website me <code>var(--token-name)</code> se use karo.</p>
+        <p><strong>Benefit:</strong> Agar client bole "saare blue colour ko red karo", to sirf <code>--color-primary</code> change karo, poori site update ho jayegi. Real companies me yahi use hota hai.</p>
+        <button class="btn-primary">Primary Button - var(--color-primary)</button>
+        <button class="btn-accent">Accent Button - var(--color-accent)</button>
+        <span class="badge">Badge - var(--fs-xs)</span>
+    </div>
+
+    <div class="token-card">
+        <h2>1. Colour Tokens - :root me defined</h2>
+        <div class="color-box" style="background: var(--color-primary);">--color-primary #0F2C61</div>
+        <div class="color-box" style="background: var(--color-accent);">--color-accent #FF6B35</div>
+        <div class="color-box" style="background: var(--color-bg); color: var(--color-text-primary); border:1px solid var(--color-border);">--color-bg #F8F9FA</div>
+        <div class="color-box" style="background: var(--color-text-primary);">--text-primary #212529</div>
+        <div class="color-box" style="background: var(--color-text-secondary);">--text-secondary #6C757D</div>
+        <div class="color-box" style="background: var(--color-success);">--color-success #28A745</div>
+        <br><br>
+        <p style="font-size: var(--fs-sm);"><code>CSS me use: background-color: var(--color-primary);</code></p>
+    </div>
+
+    <div class="token-card">
+        <h2>2. Font Size Tokens - Scale System</h2>
+        <p class="font-demo-xl">--fs-xxl 40px - Hero Heading (Poppins)</p>
+        <p class="font-demo-lg">--fs-lg 24px - Section Heading</p>
+        <p class="font-demo-base">--fs-base 16px - Body Text (Default) - Vaishnavi Singh BCA AI content yahan</p>
+        <p class="font-demo-sm">--fs-sm 14px - Secondary Text / Captions</p>
+        <p class="font-demo-xs">--fs-xs 12px - Badges, Labels</p>
+        <br>
+        <p style="font-size: var(--fs-sm);"><code>CSS me use: font-size: var(--fs-lg);</code></p>
+    </div>
+
+    <div class="token-card">
+        <h2>3. Spacing & Radius Tokens</h2>
+        <p><code>--space-xs: 4px, --space-sm: 8px, --space-md: 16px, --space-lg: 24px</code></p>
+        <p><code>--radius-sm: 4px, --radius-md: 8px, --radius-lg: 12px, --radius-full: 999px</code></p>
+        <p><code>--shadow-sm, --shadow-md - Box shadows</code></p>
+        <p class="text-secondary">Ye tokens is card me use hue hain: padding: var(--space-lg), border-radius: var(--radius-lg), shadow: var(--shadow-sm)</p>
+        <button class="btn-primary" style="border-radius: var(--radius-sm);">Small Radius</button>
+        <button class="btn-primary" style="border-radius: var(--radius-md);">Medium Radius</button>
+        <button class="btn-accent">Full Radius - var(--radius-full)</button>
+    </div>
+
+    <div class="token-card">
+        <h2>4. Complete Code - How I Created Tokens</h2>
+        <pre style="background: var(--color-bg); padding: var(--space-md); border-radius: var(--radius-md); overflow:auto; font-size: var(--fs-sm); border:1px solid var(--color-border);">
+:root {
+  /* COLOURS */
+  --color-primary: #0F2C61;
+  --color-accent: #FF6B35;
+  --color-bg: #F8F9FA;
+  --color-surface: #FFFFFF;
+
+  /* FONT SIZES */
+  --fs-xs: 12px;
+  --fs-sm: 14px;
+  --fs-base: 16px;  /* Default */
+  --fs-lg: 24px;
+  --fs-xl: 32px;
+
+  /* FONTS */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* SPACING */
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+}
+
+/* Usage */
+h1 { font-size: var(--fs-xl); color: var(--color-primary); }
+body { font-size: var(--fs-base); background: var(--color-bg); }
+.card { padding: var(--space-lg); border-radius: var(--radius-lg); }
+        </pre>
+    </div>
+
+    <div class="token-card" style="border-left: 5px solid var(--color-accent);">
+        <h2>Viva - Why CSS Variables Better Than Hardcoding?</h2>
+        <h3>Without Tokens (Wrong Way):</h3>
+        <p style="color: var(--color-error);">h1 { color: #0F2C61; } .btn { background: #0F2C61; } .header { background: #0F2C61; } /* 10 jagah same code */</p>
+        <h3>With Tokens (Q24 Correct Way):</h3>
+        <p style="color: var(--color-success);">:root { --color-primary: #0F2C61; } h1 { color: var(--color-primary); } .btn { background: var(--color-primary); } /* Ek jagah change = sab change */</p>
+        <p><strong>Vaishnavi Singh - BCA AI - Q24 - Design Tokens Completed - 8127780277</strong></p>
+        <p>
+            <a href="assignment23.html" style="color: var(--color-primary);">← Q23 Resume with Palette</a> | 
+            <a href="assignment20.html" style="color: var(--color-accent);">Q20 HTML Only →</a>
+        </p>
+    </div>
+
+</body>
+</html>

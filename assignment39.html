@@ -1,0 +1,291 @@
+Q39-Build a responsive product grid with a header and sidebar using Grid.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q39 - Responsive Product Grid with Header and Sidebar using Grid - Vaishnavi Singh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary:#0F2C61; --accent:#FF6B35; --bg:#F0F2F5; --surface:#fff; --border:#DEE2E6; --text:#212529; --text-light:#6C757D; }
+        *{margin:0; padding:0; box-sizing:border-box;}
+        body{font-family:Inter, sans-serif; background:var(--bg); color:var(--text);}
+        h1,h2,h3{font-family:Poppins, sans-serif; color:var(--primary);}
+
+        /* ========== Q39 - MAIN LAYOUT - HEADER + SIDEBAR + MAIN GRID ========== */
+        .layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            grid-template-rows: 64px 1fr;
+            grid-template-areas:
+                "header header"
+                "sidebar main";
+            min-height: 100vh;
+            gap: 12px;
+            padding: 12px;
+        }
+
+        .layout-header { grid-area: header; }
+        .layout-sidebar { grid-area: sidebar; }
+        .layout-main { grid-area: main; }
+
+        /* Header styling */
+        .layout-header {
+            background: var(--primary);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 18px;
+            position: sticky;
+            top: 12px;
+            z-index: 10;
+        }
+        .logo { font-family:Poppins; font-weight:700; display:flex; align-items:center; gap:8px; font-size:16px; }
+        .logo-img { width:32px; height:32px; border-radius:50%; background:white; border:2px solid var(--accent); }
+        .header-actions { display:flex; gap:8px; align-items:center; }
+        .header-actions a { color:#dbe2f0; text-decoration:none; font-size:12px; font-family:Poppins; padding:6px 12px; border-radius:20px; border:1px solid #1a4a9c; }
+        .header-actions a.active { background:var(--accent); color:white; border-color:var(--accent); }
+
+        /* Sidebar styling */
+        .layout-sidebar {
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: sticky;
+            top: 88px;
+            height: fit-content;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+        }
+        .filter-title { font-size:12px; font-family:Poppins; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.5px; margin-top:8px; }
+        .filter-group { display:flex; flex-direction:column; gap:6px; }
+        .filter-group label { font-size:12px; display:flex; align-items:center; gap:6px; cursor:pointer; }
+        .filter-group button { text-align:left; padding:8px 10px; border-radius:8px; border:1px solid var(--border); background:white; font-size:12px; cursor:pointer; }
+        .filter-group button.active { background:var(--primary); color:white; border-color:var(--primary); }
+
+        /* Main content - contains product grid */
+        .layout-main {
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Product grid inside main - auto reflow */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            align-items: stretch;
+        }
+
+        .p-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+        }
+        .p-card:hover { transform:translateY(-4px); box-shadow:0 10px 20px rgba(0,0,0,0.1); }
+        .p-img { height:140px; background:#fff8f0; background-image:radial-gradient(#ffd8c2 1.2px, transparent 1.2px); background-size:18px 18px; display:flex; align-items:center; justify-content:center; position:relative; }
+        .p-img img { max-width:70%; max-height:70%; object-fit:contain; }
+        .badge { position:absolute; top:8px; left:8px; background:var(--accent); color:white; font-size:9px; font-family:Poppins; padding:3px 7px; border-radius:4px; }
+        .p-body { padding:12px; display:flex; flex-direction:column; flex:1; }
+        .cat { font-size:9px; color:var(--text-light); text-transform:uppercase; font-family:Poppins; letter-spacing:1px; }
+        .title { font-size:13px; margin:4px 0; line-height:1.3; color:var(--primary); }
+        .desc { font-size:11px; color:var(--text-light); line-height:1.4; margin:4px 0 8px; }
+        .price-row { display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:8px; border-top:1px solid var(--border); }
+        .price b { font-family:Poppins; font-size:14px; color:var(--primary); }
+        .btn { padding:5px 10px; border-radius:20px; font-size:10px; font-family:Poppins; text-decoration:none; background:var(--primary); color:white; }
+
+        /* Responsive for Q39 layout */
+        @media(max-width:900px){
+            .layout {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "header"
+                    "sidebar"
+                    "main";
+            }
+            .layout-sidebar { position:static; max-height:none; flex-direction:row; flex-wrap:wrap; gap:16px; }
+            .filter-group { flex:1 1 150px; }
+        }
+        @media(max-width:600px){
+            .product-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+        }
+
+        .info { background:white; padding:16px; border-radius:10px; border-left:5px solid var(--accent); margin-top:18px; }
+        .code { background:#212121; color:#e0e0e0; padding:12px; border-radius:6px; font-family:monospace; font-size:11px; overflow:auto; margin-top:8px; }
+    </style>
+</head>
+<body>
+
+    <div class="layout">
+
+        <!-- HEADER -->
+        <header class="layout-header">
+            <div class="logo"><img src="image.png.png" alt="Vaishnavi Singh Logo" class="logo-img"> Vaishnavi Singh Store | Q39 Grid Header+Sidebar+Products</div>
+            <div class="header-actions">
+                <span style="font-size:11px;">8127780277 | Shahjahanpur</span>
+                <a href="assignment37.html">Q37 Grid</a>
+                <a href="assignment38.html">Q38 Dashboard</a>
+                <a href="#" class="active">Q39 This - Header+Sidebar+Grid</a>
+            </div>
+        </header>
+
+        <!-- SIDEBAR - Filters -->
+        <aside class="layout-sidebar">
+            <h3 style="font-size:14px;">Filters - Grid Sidebar</h3>
+
+            <div class="filter-title">By Assignment - Q1-Q39</div>
+            <div class="filter-group">
+                <button class="active">All Products (Q1-Q39)</button>
+                <button>Q25 Final Project - Most Important</button>
+                <button>Q31-Q35 Flexbox Series</button>
+                <button>Q36-Q39 Grid Series - Current</button>
+            </div>
+
+            <div class="filter-title">By Category</div>
+            <div class="filter-group">
+                <label><input type="checkbox" checked> Portfolio (Q15)</label>
+                <label><input type="checkbox" checked> Forms (Q16-Q17)</label>
+                <label><input type="checkbox" checked> Tables (Q18)</label>
+                <label><input type="checkbox" checked> Cards (Q30)</label>
+                <label><input type="checkbox" checked> Flexbox (Q31-Q35)</label>
+                <label><input type="checkbox" checked> Grid (Q36-Q39)</label>
+            </div>
+
+            <div class="filter-title">Price Range</div>
+            <div class="filter-group">
+                <button>Under ₹100</button>
+                <button>₹100 - ₹300</button>
+                <button class="active">All Range</button>
+            </div>
+
+            <div style="background:#eef2ff; padding:10px; border-radius:8px; border:1px solid #dbe2f0; margin-top:10px;">
+                <p style="font-size:11px; font-family:Poppins; font-weight:600; color:var(--primary);">Q39 Layout:</p>
+                <p style="font-size:10px; font-family:monospace; color:var(--text-light); margin-top:4px;">grid-template-areas:<br>"header header"<br>"sidebar main"<br><br>Inside main:<br>repeat(auto-fit,<br>minmax(220px, 1fr))</p>
+            </div>
+
+            <div style="font-size:11px; color:var(--text-light); margin-top:auto;">
+                <b>Vaishnavi Singh</b><br>BCA AI - 8127780277<br>GitHub: vaishnavisingh734<br>Q39 - Header+Sidebar+Grid
+            </div>
+        </aside>
+
+        <!-- MAIN - PRODUCT GRID WITH AUTO REFLOW -->
+        <main class="layout-main">
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div>
+                    <h2 style="font-size:18px;">Q39 - Product Grid with Header & Sidebar using Grid</h2>
+                    <p style="font-size:12px; color:var(--text-light);">Outer layout: header+sidebar+main using named grid areas. Inner main: product grid auto-fit minmax auto reflow. 2-level Grid nesting.</p>
+                </div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                    <span style="background:var(--primary); color:white; padding:5px 10px; border-radius:20px; font-size:10px; font-family:Poppins;">Outer: Areas</span>
+                    <span style="background:var(--accent); color:white; padding:5px 10px; border-radius:20px; font-size:10px; font-family:Poppins;">Inner: Auto-Fit Reflow</span>
+                </div>
+            </div>
+
+            <!-- PRODUCT GRID - AUTO REFLOW INSIDE MAIN -->
+            <div class="product-grid">
+
+                <div class="p-card">
+                    <div class="p-img"><span class="badge">FINAL • Q25</span><img src="image.png.png" alt="Q25 Vaishnavi Singh"></div>
+                    <div class="p-body"><div class="cat">Q25 • Final Project</div><h3 class="title">Final Styled Multi-Page Project</h3><p class="desc">Complete website - font pairing Poppins+Inter, palette Navy+Orange, tokens. Most important.</p><div class="price-row"><div class="price"><b>₹299</b></div><a href="assignment25.html" class="btn">View</a></div></div>
+                </div>
+
+                <div class="p-card">
+                    <div class="p-img"><span class="badge" style="background:#28a745;">FLEX • Q35</span><img src="image.png.png" alt="Q35 Vaishnavi Singh"></div>
+                    <div class="p-body"><div class="cat">Q35 • Flex Final</div><h3 class="title">Finished Flexbox Landing Page</h3><p class="desc">Q31-Q35 all flex combined - Navbar, hero, features, listing, footer - 100% flex only.</p><div class="price-row"><div class="price"><b>₹249</b></div><a href="assignment35.html" class="btn">View</a></div></div>
+                </div>
+
+                <div class="p-card">
+                    <div class="p-img"><span class="badge" style="background:#6f42c1;">GRID • Q36</span><img src="image.png.png" alt="Q36 Vaishnavi Singh"></div>
+                    <div class="p-body"><div class="cat">Q36 • Photo Gallery</div><h3 class="title">Simple Photo Gallery using Grid</h3><p class="desc">display:grid; grid-template-columns: repeat(3, 1fr); gap. First grid assignment.</p><div class="price-row"><div class="price"><b>₹149</b></div><a href="assignment36.html" class="btn">View</a></div></div>
+                </div>
+
+                <div class="p-card">
+                    <div class="p-img"><span class="badge" style="background:#0d6efd;">GRID • Q37</span><img src="image.png.png" alt="Q37 Vaishnavi Singh"></div>
+                    <div class="p-body"><div class="cat">Q37 • Auto Reflow</div><h3 class="title">Responsive Product Grid Auto Reflow</h3><p class="desc">auto-fit minmax(260px, 1fr) - No media query for columns, auto reflow like Amazon.</p><div class="price-row"><div class="price"><b>₹179</b></div><a href="assignment37.html" class="btn">View</a></div></div>
+                </div>
+
+                <div class="p-card">
+                    <div class="p-img"><span class="badge" style="background:#fd7e14;">GRID • Q38</span><img src="image.png.png" alt="Q38 Vaishnavi Singh"></div>
+                    <div class="p-body"><div class="cat">Q38 • Dashboard Areas</div><h3 class="title">Dashboard using Named Grid Areas</h3><p class="desc">grid-template-areas: header sidebar main rightbar footer - Visual ASCII map.</p><div class="price-row"><div class="price"><b>₹199</b></div><a href="assignment38.html" class="btn">View</a></div></div>
+                </div>
+
+                <div class="p-card" style="border:2px solid var(--accent);">
+                    <div class="p-img"><span class="badge" style="background:var(--primary);">THIS • Q39</span><img src="image.png.png" alt="Q39 Vaishnavi Singh Header Sidebar Product Grid"></div>
+                    <div class="p-body"><div class="cat">Q39 • Header+Sidebar+Grid</div><h3 class="title">This Page - Product Grid with Header & Sidebar</h3><p class="desc">You are here - Outer: named areas header+sidebar+main. Inner: auto-fit reflow grid.</p><div class="price-row"><div class="price"><b>Free</b></div><a href="assignment39.html" class="btn" style="background:var(--accent);">You Are Here</a></div></div>
+                </div>
+
+                <div class="p-card">
+                    <div class="p-img"><span class="badge" style="background:#20c997;">Q15 • PORTFOLIO</span><img src="image.png.png" alt="Q15 Vaishnavi Singh"></div>
+                    <div class="p-body"><div class="cat">Q15 • Portfolio</div><h3 class="title">Portfolio Q15 - Semantic HTML</h3><p class="desc">Header main footer article section - semantic tags with GitHub link 8127780277.</p><div class="price-row"><div class="price"><b>₹99</b></div><a href="assignment15.html" class="btn">View</a></div></div>
+                </div>
+
+                <div class="p-card">
+                    <div class="p-img"><span class="badge" style="background:#dc3545;">Q30 • CARDS</span><img src="image.png.png" alt="Q30 Vaishnavi Singh"></div>
+                    <div class="p-body"><div class="cat">Q30 • Finished Cards</div><h3 class="title">Finished Profile & Product Cards</h3><p class="desc">Polished reusable components using all CSS concepts Q23-Q29.</p><div class="price-row"><div class="price"><b>₹129</b></div><a href="assignment30.html" class="btn">View</a></div></div>
+                </div>
+
+            </div>
+
+            <div class="info">
+                <h3>Q39 - How It Works (Viva Note) - 2 Level Grid Nesting</h3>
+                <div class="code">
+/* LEVEL 1 - Outer Layout: Header + Sidebar + Main using Named Areas */
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr; /* Sidebar fixed 240px, Main flexible */
+  grid-template-rows: 64px 1fr;     /* Header 64px, Content rest */
+  grid-template-areas:
+    "header header"  /* Header spans 2 cols */
+    "sidebar main";  /* Sidebar + Main side by side */
+  min-height: 100vh;
+  gap: 12px;
+}
+.layout-header { grid-area: header; }
+.layout-sidebar { grid-area: sidebar; }
+.layout-main { grid-area: main; }
+
+/* LEVEL 2 - Inner Product Grid inside Main - Auto Reflow */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Auto reflow */
+  gap: 16px;
+}
+
+/* Responsive - Outer layout changes areas */
+@media(max-width:900px){
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main";
+  }
+}
+                </div>
+                <p style="font-size:12px; margin-top:8px;">Q39 me 2-level Grid hai: Outer level header+sidebar+main named areas se, inner level main ke andar product grid auto-fit reflow se. Isse real e-commerce layout banta hai - Header top pe, left me filters sidebar, right me products grid jo automatically reflow hota hai. Myntra, Amazon shopping page yahi pattern use karte hain. Q37 ka auto-fit + Q38 ka named areas combine = Q39.</p>
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

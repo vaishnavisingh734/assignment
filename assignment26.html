@@ -1,0 +1,203 @@
+Q26-Annotate a screenshot explaining the box model of one of your own elements.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q26 - Box Model Annotation - Vaishnavi Singh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0F2C61;
+            --accent: #FF6B35;
+            --bg: #F8F9FA;
+            --surface: #fff;
+            --content: #e3f2fd;
+            --padding: #c8e6c9;
+            --border: #ffcc80;
+            --margin: #ffcdd2;
+        }
+        body { font-family: Inter, sans-serif; background: var(--bg); margin:0; padding:20px; color: #212529; }
+        h1,h2 { font-family: Poppins, sans-serif; color: var(--primary); }
+        .container { max-width: 950px; margin: auto; }
+
+        /* THE ELEMENT WE ARE EXPLAINING - Box Model Demo */
+        .box-model-wrapper {
+            background: var(--margin); /* Margin - outermost */
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+            position: relative;
+        }
+        .box-model-wrapper::before {
+            content: "MARGIN - 30px (Outside space) - Background: Light Red #ffcdd2";
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #b71c1c;
+            font-family: Poppins;
+        }
+
+        .annotated-element {
+            /* This is the element whose box model we explain */
+            width: 80%;
+            margin: 20px auto; /* This will be visible as space */
+            background-color: var(--content);
+            padding: 25px; /* Inside space */
+            border: 10px solid #ff9800; /* Border */
+            border-radius: 8px;
+            text-align: center;
+            box-sizing: content-box; /* Important for Q26 viva */
+            position: relative;
+        }
+
+        /* Labels for annotation */
+        .label {
+            position: absolute;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 3px 7px;
+            border-radius: 4px;
+            color: white;
+            font-family: Poppins;
+        }
+        .label-content { background: #1976d2; top: 45%; left: 35%; }
+        .label-padding { background: #388e3c; top: 10px; right: 20px; }
+        .label-border { background: #ef6c00; bottom: -12px; left: 50%; transform: translateX(-50%); }
+        .label-margin { background: #c62828; top: -12px; left: 50%; transform: translateX(-50%); }
+
+        .legend { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 20px 0; }
+        .legend-item { padding: 12px; border-radius: 8px; border-left: 5px solid; }
+        .legend-content { background: var(--content); border-color: #1976d2; }
+        .legend-padding { background: var(--padding); border-color: #388e3c; }
+        .legend-border { background: var(--border); border-color: #ef6c00; }
+        .legend-margin { background: var(--margin); border-color: #c62828; }
+
+        .screenshot-box {
+            background: #212121;
+            color: #e0e0e0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            overflow: auto;
+            margin: 15px 0;
+        }
+        .card { background: var(--surface); padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Q26 - Box Model Annotation</h1>
+    <p><strong>Vaishnavi Singh | BCA AI | 8127780277 | Shahjahanpur</strong> | Element: My Profile Card from Q25</p>
+
+    <div class="card">
+        <h2>1. My Own Element Selected for Box Model</h2>
+        <p>I selected my <code>.annotated-element</code> card from my final project (Q25). This is same style as my portfolio cards.</p>
+        <p><strong>Code of this element:</strong></p>
+        <div class="screenshot-box">
+.annotated-element {<br>
+&nbsp;&nbsp;width: 80%; /* Content width */<br>
+&nbsp;&nbsp;margin: 20px auto; /* Margin - outer space */<br>
+&nbsp;&nbsp;background: #e3f2fd; /* Content area */<br>
+&nbsp;&nbsp;padding: 25px; /* Padding - inner space */<br>
+&nbsp;&nbsp;border: 10px solid #ff9800; /* Border */<br>
+}
+        </div>
+    </div>
+
+    <!-- VISUAL ANNOTATED BOX MODEL -->
+    <div class="card">
+        <h2>2. Visual Box Model - Annotated</h2>
+        <p>Neeche ka box 4 layers me hai - Bahar se andar tak: Margin → Border → Padding → Content</p>
+        
+        <div class="box-model-wrapper">
+            <!-- This is the element we annotate -->
+            <div class="annotated-element">
+                <span class="label label-content">CONTENT - 80% width - Text + Image area - #e3f2fd Blue</span>
+                <span class="label label-padding">PADDING 25px - Green #c8e6c9</span>
+                <span class="label label-border">BORDER 10px solid Orange #ffcc80</span>
+                <span class="label label-margin">MARGIN 20px auto</span>
+                
+                <h3 style="margin:0; color:var(--primary);">Vaishnavi Singh - Content Area</h3>
+                <p style="margin:5px 0;">This is CONTENT - where text and image sit. Width 80% of parent.</p>
+                <p style="font-size:12px; color:#555;">Padding is space between content and border. Border is orange line. Margin is outer space that separates this element from others.</p>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item legend-margin">
+                <strong>MARGIN - Outermost</strong><br>
+                <code>margin: 20px auto;</code><br>
+                Transparent space outside border. Pushes other elements away. In screenshot, red area. 20px top-bottom, auto left-right for centering. Not included in element size.
+            </div>
+            <div class="legend-item legend-border">
+                <strong>BORDER - Edge</strong><br>
+                <code>border: 10px solid #ff9800;</code><br>
+                Line around padding and content. Visible orange. 10px thick. Can be solid, dashed. Included in total size if box-sizing is content-box.
+            </div>
+            <div class="legend-item legend-padding">
+                <strong>PADDING - Inner Space</strong><br>
+                <code>padding: 25px;</code><br>
+                Space between content and border. Green area. Background color extends here. Content doesn't touch border because of padding. 25px all sides.
+            </div>
+            <div class="legend-item legend-content">
+                <strong>CONTENT - Innermost</strong><br>
+                <code>width: 80%; background: #e3f2fd;</code><br>
+                Actual text/image area. Blue area. This is where your content lives. Width/height defines this area only.
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>3. DevTools Screenshot - How to Take (For Viva)</h2>
+        <p><strong>Teacher ne screenshot annotate karne ko bola hai - Ye steps karo:</strong></p>
+        <ol>
+            <li>Is page ko Chrome me open karo <code>assignment26.html</code></li>
+            <li>Neeche wale blue-orange card par <strong>Right Click → Inspect</strong></li>
+            <li>Right side Styles panel me niche scroll karo - <strong>Box Model diagram</strong> dikhega (content, padding, border, margin ka colored diagram)</li>
+            <li>Screenshot le lo: <strong>Windows + Shift + S</strong></li>
+            <li>Paint me open karke arrows lagao aur likho: Content, Padding, Border, Margin</li>
+            <li>Us screenshot ko <code>box-model-screenshot.png</code> naam se save karke project folder me daal do</li>
+            <li>HTML me add karo: <code>&lt;img src="box-model-screenshot.png" alt="DevTools box model annotation Vaishnavi Singh"&gt;</code></li>
+        </ol>
+
+        <p><strong>Calculation for Viva:</strong></p>
+        <div class="screenshot-box">
+Total Width = Content Width (80%) + Padding Left 25px + Padding Right 25px + Border Left 10px + Border Right 10px + Margin Left auto + Margin Right auto<br>
+Total Height = Content Height (auto based on text) + Padding 25+25 + Border 10+10 + Margin 20+20<br>
+<br>
+If box-sizing: content-box (default) → Width only counts content<br>
+If box-sizing: border-box → Width includes content + padding + border (Better for layout)
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>4. Placeholder for Your Annotated Screenshot</h2>
+        <p>Screenshot lene ke baad yahan add karo:</p>
+        <!-- After you take DevTools screenshot, save as box-model-screenshot.png and uncomment below -->
+        <!-- <img src="box-model-screenshot.png" alt="Annotated box model screenshot of Vaishnavi Singh profile card showing content padding border margin in Chrome DevTools" style="width:100%; border:2px solid var(--primary); border-radius:8px;"> -->
+        
+        <div style="border: 2px dashed var(--primary); padding: 30px; text-align:center; background: var(--bg); border-radius:8px;">
+            <p>📸 <strong>YOUR SCREENSHOT WILL APPEAR HERE</strong></p>
+            <p style="font-size:13px; color:#666;">Take Chrome DevTools box model screenshot, save as box-model-screenshot.png in same folder as this html, then uncomment the img tag above.</p>
+            <p style="font-size:12px;">For now viva, you can show the live colored box above - it already explains margin (red), border (orange), padding (green), content (blue).</p>
+        </div>
+    </div>
+
+    <div class="card" style="background: var(--primary); color:white;">
+        <h2 style="color:white;">Q26 Viva Answer - Short Note</h2>
+        <p style="color:#dbe2f0;"><strong>Q: Explain box model of your element?</strong></p>
+        <p style="color:white;">"Ma'am maine apne Q25 ke profile card ko liya hai. Isme 4 layers hain: Sabse andar CONTENT hai jisme mera naam aur text hai, width 80%. Uske bahar PADDING 25px hai jo content ko border se dur rakhta hai, green colour. Phir BORDER 10px solid orange hai jo edge hai. Sabse bahar MARGIN 20px auto hai jo is card ko dusre cards se alag karta hai, red area. Total width calculation me content + padding + border + margin add hota hai. Maine box-sizing content-box use kiya hai, border-box better hota hai layout ke liye."</p>
+        <p style="color:#ffcc80; font-size:12px; margin-top:10px;">Vaishnavi Singh | BCA AI | 8127780277 | Q26 Box Model Annotation Complete</p>
+    </div>
+
+</div>
+
+</body>
+</html>

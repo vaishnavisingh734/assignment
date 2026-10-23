@@ -1,0 +1,235 @@
+Q21-Convert one HTML-only page from Week 4 into a lightly styled page.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q21 - Lightly Styled Page - Vaishnavi Singh</title>
+
+    <!-- LIGHT CSS - Week 5 Start -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7ff;
+            color: #222;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            color: #fff;
+        }
+        header p {
+            color: #d5e1f0;
+            margin: 5px 0;
+        }
+        nav {
+            background-color: #34495e;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: bold;
+            padding: 6px 10px;
+            border-radius: 4px;
+        }
+        nav a:hover {
+            background-color: #1abc9c;
+            color: #fff;
+        }
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border-left: 5px solid #1abc9c;
+            background: #fafcff;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #1abc9c;
+            padding-bottom: 5px;
+        }
+        img {
+            border-radius: 50%;
+            border: 3px solid #1abc9c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+        td, th {
+            padding: 10px;
+            text-align: left;
+        }
+        fieldset {
+            border: 2px solid #1abc9c;
+            border-radius: 8px;
+            background: #ffffff;
+        }
+        legend {
+            background: #1abc9c;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        input[type="submit"], input[type="reset"] {
+            background-color: #1abc9c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 8px;
+        }
+        input[type="submit"]:hover {
+            background-color: #16a085;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #1abc9c;
+            text-decoration: none;
+        }
+        .highlight {
+            background-color: #e8f8f5;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px dashed #1abc9c;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="top">
+        <h1>Vaishnavi Singh - BCA AI Final Project (Styled)</h1>
+        <p>Q21 - Lightly Styled Page | Shahjahanpur | 8127780277 | Rana Public School</p>
+        <p>This is same as Q20 but now with CSS - Week 4 to Week 5 Conversion</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#registration">Registration</a>
+        <a href="#contact">Contact</a>
+        <a href="#projects">All Projects</a>
+    </nav>
+
+    <main>
+
+        <section id="home">
+            <h2>HOME - Welcome (Styled Version)</h2>
+            <img src="image.png.png" alt="Vaishnavi Singh - BCA AI Student Profile Photo Styled" width="120">
+            <p>Hello! I am <strong>Vaishnavi Singh</strong> from <strong>Shahjahanpur</strong>, BCA AI 1st Year.</p>
+            <div class="highlight">
+                <p><strong>What Changed in Q21?</strong> Earlier Q20 was pure HTML only. Now in Q21 we added:</p>
+                <ul>
+                    <li>Background colors - body #f5f7ff, header #2c3e50</li>
+                    <li>Font family - Arial, sans-serif</li>
+                    <li>Box shadow & Border radius for main card</li>
+                    <li>Styled navigation with hover effect</li>
+                    <li>Table header dark color</li>
+                    <li>Form buttons green color</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>ABOUT - My Learning Journey</h2>
+            <p><strong>Name:</strong> Vaishnavi Singh | <strong>Course:</strong> BCA AI 1st Year | <strong>Contact:</strong> 8127780277</p>
+            <p>I started from Q1 - What happens when you type URL, to Q20 Complete Multi-page project.</p>
+            <p><strong>GitHub Repository:</strong> vaishnavisingh734/assignment - All 20 assignments pushed.</p>
+        </section>
+
+        <section id="registration">
+            <h2>REGISTRATION - Student Form (Styled)</h2>
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Quick Registration - BCA AI - Styled</legend>
+                    <label>Full Name:</label><br>
+                    <input type="text" value="Vaishnavi Singh" style="width: 90%; padding: 6px;"><br><br>
+                    <label>Email:</label><br>
+                    <input type="email" value="radha.singh.12345.radha.singh@gmail.com" style="width: 90%; padding: 6px;"><br><br>
+                    <label>Course:</label><br>
+                    <select style="width: 92%; padding: 6px;">
+                        <option selected>BCA AI 1st Year - Styled Page</option>
+                    </select><br><br>
+                    <input type="submit" value="Register Now">
+                    <input type="reset" value="Clear">
+                </fieldset>
+            </form>
+        </section>
+
+        <section id="contact">
+            <h2>CONTACT - Reach Me</h2>
+            <table border="1">
+                <tr>
+                    <th>Method</th>
+                    <th>Details</th>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>8127780277</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>radha.singh.12345.radha.singh@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>GitHub</td>
+                    <td>github.com/vaishnavisingh734/assignment</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="projects">
+            <h2>All Projects - Q1 to Q21 Navigation</h2>
+            <p>This page itself is Q21 - Styled version of Q20. All earlier pages are HTML-only, this one is lightly styled.</p>
+            <ul>
+                <li><a href="assignment20.html">View Q20 - HTML Only Version (Without CSS)</a></li>
+                <li><a href="assignment15.html">View Q15 - Final Portfolio (HTML Only)</a></li>
+                <li><a href="assignment18.html">View Q18 - Size Chart Table (HTML Only)</a></li>
+                <li><strong>Current: Q21 - Same Q20 content but with CSS (Background, Colors, Border, Hover)</strong></li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <h3>Q21 - CSS Added - Final Footer</h3>
+        <p>Vaishnavi Singh | BCA AI | 8127780277 | Shahjahanpur</p>
+        <p>Difference: Q20 = HTML Only | Q21 = HTML + Light CSS (Color, Font, Box, Hover)</p>
+        <p><a href="#top">Back to Top ↑</a> | <a href="assignment20.html">View Old HTML Only</a></p>
+        <p>© 2025-26 Vaishnavi Singh - Q21 Styled Page</p>
+    </footer>
+
+</body>
+</html>

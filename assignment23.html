@@ -1,0 +1,261 @@
+Q23-Restyle the resume page with a proper font pairing and colour palette.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q23 - Resume with Font Pairing & Colour Palette - Vaishnavi Singh</title>
+
+    <!-- GOOGLE FONTS - Font Pairing -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* COLOUR PALETTE - Q23 Requirement */
+        :root {
+            --primary: #0F2C61;   /* Deep Navy - Headings, Header */
+            --accent: #FF6B35;    /* Orange - Highlights, Buttons */
+            --bg-light: #F8F9FA;  /* Light Grey - Body Background */
+            --card: #FFFFFF;      /* White - Cards */
+            --text-dark: #212529; /* Dark Grey - Body Text */
+            --text-light: #6C757D; /* Light Grey - Secondary Text */
+        }
+
+        /* FONT PAIRING */
+        /* Heading Font: Poppins (Bold, Modern) */
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+        /* Body Font: Inter (Clean, Readable) */
+        body, p, li, td {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            color: var(--text-dark);
+        }
+
+        body {
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+        }
+
+        .resume-container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: var(--card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(15,44,97,0.1);
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* LEFT SIDEBAR - Dark */
+        .sidebar {
+            background-color: var(--primary);
+            color: white;
+            width: 32%;
+            padding: 30px 20px;
+        }
+        .sidebar h2, .sidebar h3 {
+            color: white;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 8px;
+        }
+        .sidebar p, .sidebar li {
+            color: #dbe2f0;
+            font-size: 14px;
+        }
+        .sidebar a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            display: block;
+            margin: 0 auto 15px;
+            background: white;
+        }
+        .tag {
+            background: var(--accent);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: inline-block;
+            margin: 3px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* RIGHT CONTENT - Light */
+        .main-content {
+            width: 68%;
+            padding: 30px;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section h2 {
+            font-size: 20px;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+        }
+        .job-title {
+            color: var(--accent);
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+        .date {
+            color: var(--text-light);
+            font-size: 13px;
+            font-style: italic;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+        }
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* FOOTER - Palette info for Viva */
+        .palette-info {
+            background: #eef2ff;
+            border: 1px dashed var(--primary);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        @media(max-width: 700px) {
+            .sidebar, .main-content { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume-container">
+        
+        <!-- LEFT - SIDEBAR -->
+        <div class="sidebar">
+            <img src="image.png.png" alt="Vaishnavi Singh - BCA AI Student Resume Photo Professional" class="profile-img">
+            <h2 style="text-align:center; border:none;">Vaishnavi Singh</h2>
+            <p style="text-align:center; color:var(--accent); font-weight:600; font-family:Poppins;">BCA AI 1st Year Student</p>
+            
+            <h3>Contact</h3>
+            <p>📞 8127780277<br>📧 radha.singh.12345.radha.singh@gmail.com<br>📍 Shahjahanpur, UP<br>🔗 github.com/vaishnavisingh734/assignment</p>
+
+            <h3>Skills</h3>
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">Git & GitHub</span>
+            <span class="tag">Semantic Tags</span>
+            <span class="tag">Forms & Tables</span>
+            <span class="tag">Responsive Design</span>
+
+            <h3>Education</h3>
+            <p><strong>Rana Public School</strong><br>Shahjahanpur<br><span class="date">12th Completed - 2024</span></p>
+            <p><strong>BCA AI - 1st Year</strong><br>Current<br><span class="date">2025-26 Batch</span></p>
+
+            <h3>Languages</h3>
+            <ul>
+                <li>Hindi - Native</li>
+                <li>English - Professional</li>
+            </ul>
+
+            <div class="palette-info" style="background: rgba(255,255,255,0.1); border-color: var(--accent);">
+                <p style="color:white;"><strong>Q23 Viva Note:</strong><br>Font Pair: Poppins (Heading) + Inter (Body)<br>Palette: #0F2C61 Navy, #FF6B35 Orange</p>
+            </div>
+        </div>
+
+        <!-- RIGHT - MAIN CONTENT -->
+        <div class="main-content">
+            
+            <div class="section">
+                <h1 style="margin:0; font-size:28px;">VAISHNAVI SINGH</h1>
+                <p class="job-title">Aspiring AI Developer | BCA AI Student | Shahjahanpur</p>
+                <p style="color:var(--text-light);">Passionate BCA AI student learning complete web development journey from HTML-only (Q1-Q20) to styled pages (Q21-Q23). Built 23 HTML assignments with proper GitHub workflow.</p>
+            </div>
+
+            <div class="section">
+                <h2>About Me - Learning Summary</h2>
+                <p>I am from Shahjahanpur, UP. Started my HTML journey with Q1 - What happens when you type URL in browser? Now I have completed 23 assignments including portfolio (Q15), forms (Q16-Q17), tables with rowspan/colspan (Q18), audit report (Q19), complete multi-page project (Q20), lightly styled page (Q21), selector types (Q22), and now this styled resume (Q23).</p>
+            </div>
+
+            <div class="section">
+                <h2>Academic Projects - Q1 to Q23</h2>
+                <table>
+                    <tr>
+                        <th>Assignment</th>
+                        <th>Topic</th>
+                        <th>Skill</th>
+                    </tr>
+                    <tr>
+                        <td><a href="assignment15.html">Q15</a></td>
+                        <td>Final Portfolio</td>
+                        <td>Semantic HTML</td>
+                    </tr>
+                    <tr>
+                        <td><a href="assignment16.html">Q16</a></td>
+                        <td>Student Registration</td>
+                        <td>Basic Forms</td>
+                    </tr>
+                    <tr>
+                        <td><a href="assignment18.html">Q18</a></td>
+                        <td>E-commerce Size Chart</td>
+                        <td>Table rowspan/colspan</td>
+                    </tr>
+                    <tr>
+                        <td><a href="assignment20.html">Q20</a></td>
+                        <td>Complete Website</td>
+                        <td>Multi-page Navigation</td>
+                    </tr>
+                    <tr>
+                        <td><a href="assignment21.html">Q21</a></td>
+                        <td>Lightly Styled Page</td>
+                        <td>Internal CSS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Q23 (This)</strong></td>
+                        <td>Styled Resume</td>
+                        <td>Font Pairing & Palette</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>Why This Design? - Q23 Justification</h2>
+                <div class="palette-info">
+                    <p><strong>1. Font Pairing Chosen:</strong></p>
+                    <p><strong>Poppins (Headings)</strong> - Bold, modern, attention-grabbing. Google Fonts me top resume font hai. <br><strong>Inter (Body)</strong> - Super readable, professional, long text ke liye best. Both sans-serif so they pair well.</p>
+                    
+                    <p><strong>2. Colour Palette Chosen:</strong></p>
+                    <p><strong>Primary #0F2C61 (Deep Navy):</strong> Trust, professionalism - Resume ke liye perfect. <br><strong>Accent #FF6B35 (Orange):</strong> Energy, creativity - Highlights ke liye. Navy ke saath high contrast. <br><strong>Background #F8F9FA (Light Grey):</strong> Eye-friendly, content ko pop karata hai. <br><strong>Rule:</strong> 60-30-10 rule - 60% Light, 30% Navy, 10% Orange.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <p style="text-align:center;"><a href="assignment20.html" style="background:var(--primary); color:white; padding:10px 20px; border-radius:5px; text-decoration:none;">View Q20 HTML-Only Version</a> <a href="assignment21.html" style="background:var(--accent); color:white; padding:10px 20px; border-radius:5px; text-decoration:none; margin-left:10px;">View Q21 Styled Version</a></p>
+                <p style="text-align:center; color:var(--text-light); font-size:12px;">Vaishnavi Singh | BCA AI | 8127780277 | Q23 Resume - Font Pairing & Colour Palette | GitHub: vaishnavisingh734/assignment</p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

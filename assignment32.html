@@ -1,0 +1,224 @@
+Q32-Create a perfectly centred login-form layout using Flexbox.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q32 - Perfectly Centred Login Form using Flexbox - Vaishnavi Singh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary:#0F2C61; --accent:#FF6B35; --bg:#F0F2F5; --surface:#fff; --border:#DEE2E6; --text:#212529; --text-light:#6C757D; }
+        *{margin:0; padding:0; box-sizing:border-box;}
+        body{font-family:Inter, sans-serif; background:var(--bg); color:var(--text);}
+        h1,h2{font-family:Poppins, sans-serif;}
+
+        /* ========== Q32 - PERFECT CENTER - MAIN TASK ========== */
+        .center-wrapper {
+            display: flex; /* Flex container */
+            justify-content: center; /* Horizontal center */
+            align-items: center; /* Vertical center */
+            min-height: 100vh; /* Full viewport height - important for vertical center */
+            padding: 20px;
+            background: radial-gradient(circle at 30% 20%, rgba(15,44,97,0.1) 0%, transparent 50%), 
+                        radial-gradient(circle at 80% 80%, rgba(255,107,53,0.12) 0%, transparent 50%),
+                        var(--bg);
+        }
+
+        /* Login Card - Centered item */
+        .login-card {
+            display: flex; /* Inner flex for two columns */
+            flex-direction: row;
+            background: var(--surface);
+            border-radius: 18px;
+            box-shadow: 0 15px 35px rgba(15,44,97,0.15);
+            overflow: hidden;
+            max-width: 850px;
+            width: 100%;
+            min-height: 480px;
+        }
+
+        /* Left side - Branding */
+        .login-left {
+            flex: 1; /* Take equal space */
+            background: linear-gradient(135deg, var(--primary) 0%, #1a4a9c 100%);
+            color: white;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertical center inside left */
+            position: relative;
+        }
+        .login-left::after {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,107,53,0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -50px;
+            right: -50px;
+        }
+        .login-left h2 { color:white; font-size:26px; line-height:1.2; margin-bottom:12px; }
+        .login-left p { color:#dbe2f0; font-size:14px; line-height:1.5; }
+
+        /* Right side - Form */
+        .login-right {
+            flex: 1.1;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .login-right h2 { color:var(--primary); font-size:22px; margin-bottom:6px; }
+        .login-subtitle { color:var(--text-light); font-size:13px; margin-bottom:20px; }
+
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display:block; font-size:13px; font-family:Poppins, sans-serif; font-weight:600; margin-bottom:6px; color:var(--text); }
+        .form-group input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: Inter, sans-serif;
+            font-size: 14px;
+            transition: 0.2s;
+            outline: none;
+        }
+        .form-group input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(255,107,53,0.15); }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            margin: 12px 0;
+        }
+        .btn {
+            width: 100%;
+            padding: 11px;
+            border-radius: 8px;
+            border: none;
+            font-family: Poppins, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-primary { background:var(--primary); color:white; }
+        .btn-primary:hover { background:#0b214a; }
+        .btn-accent { background:var(--accent); color:white; margin-top:10px; }
+        .btn-accent:hover { background:#e55a2b; }
+
+        .divider {
+            display:flex;
+            align-items:center;
+            gap:10px;
+            margin:16px 0;
+            font-size:12px;
+            color:var(--text-light);
+        }
+        .divider::before, .divider::after { content:""; flex:1; height:1px; background:var(--border); }
+
+        /* Responsive */
+        @media(max-width:700px){
+            .login-card { flex-direction: column; min-height:auto; }
+            .login-left { padding:25px; }
+            .center-wrapper { min-height:auto; padding:15px; }
+        }
+
+        .info { max-width:850px; margin:20px auto; background:white; padding:18px; border-radius:10px; border:1px solid var(--border); }
+        .code { background:#212121; color:#e0e0e0; padding:12px; border-radius:6px; font-family:monospace; font-size:12px; overflow:auto; margin-top:10px; }
+    </style>
+</head>
+<body>
+
+    <!-- PERFECT CENTER WRAPPER - Q32 MAIN -->
+    <div class="center-wrapper">
+
+        <div class="login-card">
+
+            <!-- Left - Branding -->
+            <div class="login-left">
+                <img src="image.png.png" alt="Vaishnavi Singh BCA AI Logo" style="width:70px; height:70px; border-radius:50%; border:3px solid var(--accent); background:white; margin-bottom:15px;">
+                <h2>Welcome Back,<br>Vaishnavi!</h2>
+                <p>BCA AI 1st Year Student from Shahjahanpur. This perfectly centred login form is built using Flexbox - Q32 assignment.</p>
+                <p style="margin-top:15px; font-size:12px; color:#a8b9d9;">Q1 to Q32 journey complete.<br>GitHub: vaishnavisingh734/assignment<br>Contact: 8127780277</p>
+                <div style="margin-top:20px; display:flex; gap:8px; flex-wrap:wrap;">
+                    <span style="background:rgba(255,255,255,0.15); padding:5px 10px; border-radius:20px; font-size:11px;">HTML5</span>
+                    <span style="background:rgba(255,107,53,0.25); padding:5px 10px; border-radius:20px; font-size:11px;">Flexbox</span>
+                    <span style="background:rgba(255,255,255,0.15); padding:5px 10px; border-radius:20px; font-size:11px;">CSS3</span>
+                </div>
+            </div>
+
+            <!-- Right - Login Form -->
+            <div class="login-right">
+                <h2>Login to Your Account</h2>
+                <p class="login-subtitle">Enter your credentials to access Q25 final project</p>
+
+                <form>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="radha.singh.12345.radha.singh@gmail.com" value="radha.singh.12345.radha.singh@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Enter password" value="Vaishnavi@BCA_AI_2025">
+                    </div>
+
+                    <div class="form-row">
+                        <label style="display:flex; align-items:center; gap:6px; font-family:Inter; font-weight:400; cursor:pointer;">
+                            <input type="checkbox" checked> Remember me
+                        </label>
+                        <a href="#" style="color:var(--accent); text-decoration:none; font-weight:600;">Forgot password?</a>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" onclick="alert('Login Success! Redirecting to Q25 Final Project - Vaishnavi Singh')">Login →</button>
+                    <button type="button" class="btn btn-accent" onclick="window.location.href='assignment25.html'">View Q25 Final Project</button>
+
+                    <div class="divider">or continue with</div>
+
+                    <div style="display:flex; gap:10px;">
+                        <button type="button" class="btn" style="background:white; border:1px solid var(--border); flex:1; font-size:12px;">🔗 GitHub</button>
+                        <button type="button" class="btn" style="background:white; border:1px solid var(--border); flex:1; font-size:12px;">📧 Google</button>
+                    </div>
+
+                    <p style="text-align:center; font-size:12px; margin-top:15px; color:var(--text-light);">Don't have account? <a href="assignment16.html" style="color:var(--primary); font-weight:600; text-decoration:none;">Register Q16</a> • <a href="assignment31.html" style="color:var(--accent); text-decoration:none;">Menu Q31</a></p>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="info">
+        <h2>Q32 - How Perfect Centering Works (Viva Note)</h2>
+        <div class="code">
+/* OUTER WRAPPER - Perfect center technique */
+.center-wrapper {
+  display: flex;              /* 1. Make flex container */
+  justify-content: center;    /* 2. Horizontal center (main axis) */
+  align-items: center;        /* 3. Vertical center (cross axis) */
+  min-height: 100vh;          /* 4. Full viewport height - needed for vertical center */
+}
+
+/* LOGIN CARD - Inner flex for 2 columns */
+.login-card {
+  display: flex;              /* Inner flex for left + right columns */
+  flex-direction: row;        /* Side by side */
+}
+
+@media(max-width:700px){
+  .login-card { flex-direction: column; } /* Stack on mobile */
+}
+        </div>
+
+        <h3 style="margin-top:15px;">Why This is Perfect Centering?</h3>
+        <p style="font-size:14px;">Old method: <code>margin:auto</code> only horizontal, vertical ke liye <code>position:absolute; top:50%; transform:translateY(-50%)</code> hack. Flex me sirf 3 properties: <code>display:flex</code> + <code>justify-content:center</code> + <code>align-items:center</code> + <code>min-height:100vh</code>. Horizontal + vertical both centered, no hacks, responsive, works for any size content. This is modern industry standard.</p>
+
+        <p style="margin-top:10px; font-size:13px;"><strong>Vaishnavi Singh - Q32 Perfectly Centred Login Form using Flexbox Completed - 8127780277</strong></p>
+        <p style="font-size:12px; margin-top:5px;"><a href="assignment31.html">← Q31 Flex Menu</a> | <a href="assignment30.html">Q30 Cards</a> | <a href="assignment25.html">Q25 Final →</a></p>
+    </div>
+
+</body>
+</html>

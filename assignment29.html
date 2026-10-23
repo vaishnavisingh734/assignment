@@ -1,0 +1,224 @@
+Q29-Style a landing-page hero section using position and z-index.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q29 - Landing Page Hero with Position & Z-Index - Vaishnavi Singh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary:#0F2C61; --accent:#FF6B35; --bg:#F8F9FA; }
+        *{margin:0; padding:0; box-sizing:border-box;}
+        body { font-family: Inter, sans-serif; background: var(--bg); }
+        h1,h2 { font-family: Poppins, sans-serif; }
+
+        /* ========== HERO SECTION - MAIN TASK ========== */
+        .hero {
+            position: relative; /* Parent relative - Important for absolute children */
+            width: 100%;
+            height: 90vh;
+            min-height: 500px;
+            background-color: var(--primary);
+            background-image: linear-gradient(rgba(15,44,97,0.7), rgba(15,44,97,0.85)), url('image.png.png');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Layer 1 - Background decoration - z-index 1 */
+        .hero-bg-circle {
+            position: absolute; /* Absolute inside relative */
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,107,53,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            z-index: 1; /* Lowest layer */
+        }
+        .hero-bg-circle-2 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: 50px;
+            left: 50px;
+            z-index: 1;
+        }
+
+        /* Layer 2 - Overlay - z-index 2 */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15,44,97,0.8) 0%, rgba(15,44,97,0.4) 100%);
+            z-index: 2;
+        }
+
+        /* Layer 3 - Content - z-index 3 - Top layer */
+        .hero-content {
+            position: relative; /* Relative to be above overlay */
+            z-index: 3; /* Higher than overlay */
+            text-align: center;
+            color: white;
+            max-width: 700px;
+            padding: 20px;
+        }
+        .hero-content h1 {
+            font-size: 48px;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+        .hero-content h1 span { color: var(--accent); }
+        .hero-content p { font-size: 18px; color: #dbe2f0; margin-bottom: 25px; }
+
+        /* Layer 4 - Floating badges with higher z-index */
+        .floating-badge {
+            position: absolute;
+            background: white;
+            color: var(--primary);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            font-family: Poppins;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 4; /* Even higher - floats above content */
+        }
+        .badge-1 { top: 20%; left: 10%; animation: float 3s ease-in-out infinite; }
+        .badge-2 { top: 15%; right: 12%; animation: float 3s ease-in-out infinite 0.5s; }
+        .badge-3 { bottom: 25%; left: 15%; animation: float 3s ease-in-out infinite 1s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .btn { display:inline-block; padding: 12px 28px; border-radius: 30px; text-decoration:none; font-family: Poppins, sans-serif; font-size:14px; margin:5px; }
+        .btn-accent { background: var(--accent); color:white; position:relative; z-index:3; }
+        .btn-outline { border:2px solid white; color:white; }
+
+        /* Sticky Navbar - Position Fixed Demo */
+        nav {
+            position: fixed; /* Fixed stays on scroll */
+            top:0;
+            left:0;
+            width:100%;
+            background: rgba(15,44,97,0.95);
+            padding: 12px 20px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            z-index: 100; /* Highest - always on top */
+            backdrop-filter: blur(5px);
+        }
+        nav a { color:white; text-decoration:none; margin-left:15px; font-size:13px; }
+
+        .info-card { max-width:900px; margin:30px auto; background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.08); }
+        .code-box { background:#212121; color:#e0e0e0; padding:12px; border-radius:6px; font-family:monospace; font-size:12px; margin-top:10px; overflow:auto; }
+    </style>
+</head>
+<body>
+
+    <!-- FIXED NAV - z-index 100 -->
+    <nav>
+        <div style="color:white; font-family:Poppins; font-weight:bold;">Vaishnavi Singh | BCA AI</div>
+        <div>
+            <a href="assignment25.html">Q25 Final</a>
+            <a href="assignment28.html">Q28 Overflow</a>
+            <a href="#hero">Hero Demo</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION - Main Task Q29 -->
+    <section class="hero" id="hero">
+
+        <!-- Layer 1 - Decorative circles z-index 1 -->
+        <div class="hero-bg-circle"></div>
+        <div class="hero-bg-circle-2"></div>
+
+        <!-- Layer 2 - Overlay z-index 2 -->
+        <div class="hero-overlay"></div>
+
+        <!-- Layer 4 - Floating badges z-index 4 - Above content -->
+        <div class="floating-badge badge-1">✅ BCA AI 1st Year</div>
+        <div class="floating-badge badge-2">📍 Shahjahanpur</div>
+        <div class="floating-badge badge-3">💻 29 Projects Done</div>
+
+        <!-- Layer 3 - Main Content z-index 3 -->
+        <div class="hero-content">
+            <p style="color:var(--accent); font-weight:bold; letter-spacing:2px; font-size:12px; margin-bottom:10px;">Q29 - POSITION & Z-INDEX HERO</p>
+            <h1>Build Your Future With <span>BCA AI</span></h1>
+            <p>I am Vaishnavi Singh from Shahjahanpur, BCA AI 1st Year Student. This hero section demonstrates position relative, absolute, fixed and z-index layering - Q1 to Q29 journey completed.</p>
+            <a href="assignment25.html" class="btn btn-accent">View My Final Project Q25</a>
+            <a href="assignment15.html" class="btn btn-outline">View Portfolio Q15</a>
+            <p style="margin-top:15px; font-size:11px; color:#a8b9d9;">Contact: 8127780277 | radha.singh.12345.radha.singh@gmail.com | github.com/vaishnavisingh734/assignment</p>
+        </div>
+
+    </section>
+
+    <!-- EXPLANATION SECTION -->
+    <div class="info-card">
+        <h2>How Position & Z-Index Used in This Hero (Viva Note)</h2>
+        
+        <h3 style="margin-top:15px;">1. Position Types Used:</h3>
+        <ul style="margin-left:20px; font-size:14px;">
+            <li><code>position: relative</code> on <code>.hero</code> → Parent bana taaki absolute children isi ke andar position ho. Aur <code>.hero-content</code> relative taaki z-index kaam kare.</li>
+            <li><code>position: absolute</code> on circles, overlay, badges → Parent .hero ke top/left/right/bottom se position kiya. Normal flow se bahar nikal gaye.</li>
+            <li><code>position: fixed</code> on <code>nav</code> → Scroll pe bhi top pe chipka rahta hai. Viewport se relative.</li>
+        </ul>
+
+        <h3 style="margin-top:15px;">2. Z-Index Layering (Stacking Order):</h3>
+        <div class="code-box">
+Layer Stack (Bottom to Top):
+z-index: 1 → .hero-bg-circle (Decorative background circles - sabse neeche)
+z-index: 2 → .hero-overlay (Dark overlay over image - circles ke upar)
+z-index: 3 → .hero-content (Main heading, text, buttons - overlay ke upar)
+z-index: 4 → .floating-badge (Floating tags - content se bhi upar)
+z-index: 100 → nav (Fixed navbar - sabse upar, hamesha dikhega)
+        </div>
+
+        <h3 style="margin-top:15px;">3. Why Position Needed?</h3>
+        <p style="font-size:14px;">Bina position ke sab elements ek ke neeche ek aate (normal flow). Hero me humein chahiye background image, uske upar dark overlay, uske upar text, uske upar floating badges - sab ek hi jagah stack ho. Ye sirf position absolute + z-index se possible hai.</p>
+
+        <div class="code-box">
+.hero { position: relative; } /* Reference for absolute */
+
+.hero-bg-circle {
+  position: absolute;
+  top: -100px; right: -100px;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top:0; left:0; width:100%; height:100%;
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3; /* Above overlay */
+}
+
+nav {
+  position: fixed;
+  top:0;
+  z-index: 100; /* Highest */
+}
+        </div>
+
+        <p style="margin-top:15px;"><strong>Vaishnavi Singh - Q29 Hero with Position & Z-Index Completed - 8127780277</strong></p>
+        <p><a href="assignment28.html" style="color:var(--primary);">← Q28 Overflow Fix</a> | <a href="assignment25.html" style="color:var(--accent);">Q25 Final Styled Project →</a></p>
+    </div>
+
+</body>
+</html>

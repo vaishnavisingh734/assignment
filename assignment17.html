@@ -1,0 +1,187 @@
+Q17-Build a job-application style form using every input type covered.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Q17 - Job Application Form - Vaishnavi Singh</title>
+</head>
+<body>
+
+    <header>
+        <h1>Q17 - Job Application Form</h1>
+        <p><strong>Vaishnavi Singh | BCA AI 1st Year | All Input Types Covered</strong></p>
+        <img src="profile.jpg" alt="Applicant Vaishnavi Singh professional photo for job application form" width="120">
+        <hr>
+    </header>
+
+    <main>
+        <h2>Job Application - Web Developer (Fresher) - BCA AI Student</h2>
+        
+        <form action="#" method="post" enctype="multipart/form-data">
+
+            <!-- 1. PERSONAL INFO -->
+            <fieldset>
+                <legend>1. Personal Information</legend>
+                
+                <label for="name">Full Name (text):</label><br>
+                <input type="text" id="name" name="name" value="Vaishnavi Singh" placeholder="Enter full name" required><br><br>
+
+                <label for="email">Email (email):</label><br>
+                <input type="email" id="email" name="email" value="radha.singh.12345.radha.singh@gmail.com" required><br><br>
+
+                <label for="phone">Phone (tel):</label><br>
+                <input type="tel" id="phone" name="phone" value="8127780277" pattern="[0-9]{10}" required><br><br>
+
+                <label for="password">Password (password):</label><br>
+                <input type="password" id="password" name="password" placeholder="Create password for application" required><br><br>
+
+                <label for="website">Portfolio Website (url):</label><br>
+                <input type="url" id="website" name="website" placeholder="https://your-portfolio.com/q15"><br><br>
+
+                <label for="search">Search Job Code (search):</label><br>
+                <input type="search" id="search" name="search" placeholder="e.g. WEB-2026-AI"><br><br>
+
+                <input type="hidden" id="hidden" name="application_id" value="BCA-AI-VAISHNAVI-2026">
+            </fieldset>
+
+            <br>
+
+            <!-- 2. DATE & TIME TYPES -->
+            <fieldset>
+                <legend>2. Date & Time Inputs</legend>
+
+                <label for="dob">DOB (date):</label><br>
+                <input type="date" id="dob" name="dob" required><br><br>
+
+                <label for="month">Available From Month (month):</label><br>
+                <input type="month" id="month" name="available_month"><br><br>
+
+                <label for="week">Available Week (week):</label><br>
+                <input type="week" id="week" name="available_week"><br><br>
+
+                <label for="time">Preferred Interview Time (time):</label><br>
+                <input type="time" id="time" name="interview_time"><br><br>
+
+                <label for="datetime">Interview Slot (datetime-local):</label><br>
+                <input type="datetime-local" id="datetime" name="interview_datetime"><br><br>
+            </fieldset>
+
+            <br>
+
+            <!-- 3. NUMBERS & RANGE -->
+            <fieldset>
+                <legend>3. Numbers & Range</legend>
+
+                <label for="age">Age (number):</label><br>
+                <input type="number" id="age" name="age" min="18" max="60" value="19"><br><br>
+
+                <label for="exp">Experience in Months (number with step):</label><br>
+                <input type="number" id="exp" name="experience" min="0" max="12" step="1" value="0"><br><br>
+
+                <label for="salary">Expected Salary Range (range) - 10k to 50k:</label><br>
+                <input type="range" id="salary" name="salary" min="10000" max="50000" value="25000" step="1000" oninput="this.nextElementSibling.value = this.value">
+                <output>25000</output><br><br>
+
+                <label for="skillrate">Rate Your HTML Skill (range 0-10):</label><br>
+                <input type="range" id="skillrate" name="html_skill" min="0" max="10" value="8"><br><br>
+            </fieldset>
+
+            <br>
+
+            <!-- 4. CHOICE INPUTS -->
+            <fieldset>
+                <legend>4. Choice Inputs</legend>
+
+                <label>Job Type (radio - choose one):</label><br>
+                <input type="radio" id="fulltime" name="jobtype" value="fulltime" checked>
+                <label for="fulltime">Full Time</label>
+                <input type="radio" id="parttime" name="jobtype" value="parttime">
+                <label for="parttime">Part Time</label>
+                <input type="radio" id="intern" name="jobtype" value="intern">
+                <label for="intern">Internship</label><br><br>
+
+                <label>Skills (checkbox - choose multiple):</label><br>
+                <input type="checkbox" id="skill1" name="skills" value="html" checked><label for="skill1"> HTML5 Semantic (Q14)</label>
+                <input type="checkbox" id="skill2" name="skills" value="git" checked><label for="skill2"> Git & GitHub (Q4-Q5)</label>
+                <input type="checkbox" id="skill3" name="skills" value="navigation"><label for="skill3"> Internal Navigation (Q11)</label>
+                <input type="checkbox" id="skill4" name="skills" value="accessibility"><label for="skill4"> Alt Attributes (Q12)</label><br><br>
+
+                <label for="location">Preferred Location (select):</label><br>
+                <select id="location" name="location">
+                    <option value="">--Select City--</option>
+                    <option value="shahjahanpur" selected>Shahjahanpur</option>
+                    <option value="bareilly">Bareilly</option>
+                    <option value="lucknow">Lucknow</option>
+                    <option value="delhi">Delhi NCR</option>
+                    <option value="remote">Remote / Work From Home</option>
+                </select><br><br>
+
+                <label for="role">Role with Datalist (text + datalist):</label><br>
+                <input list="roles" id="role" name="role" placeholder="Type or select role">
+                <datalist id="roles">
+                    <option value="Frontend Developer">
+                    <option value="Backend Developer">
+                    <option value="AI Intern">
+                    <option value="Web Designer">
+                    <option value="BCA AI Trainee">
+                </datalist><br><br>
+            </fieldset>
+
+            <br>
+
+            <!-- 5. FILES & OTHERS -->
+            <fieldset>
+                <legend>5. Files & Others</legend>
+
+                <label for="color">Favorite Theme Color (color):</label><br>
+                <input type="color" id="color" name="favcolor" value="#0066ff"><br><br>
+
+                <label for="resume">Upload Resume (file):</label><br>
+                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx"><br><br>
+
+                <label for="photo">Upload Photo (file image):</label><br>
+                <input type="file" id="photo" name="photo" accept="image/*"><br><br>
+
+                <label for="cover">Cover Letter (textarea):</label><br>
+                <textarea id="cover" name="cover" rows="5" cols="50" placeholder="I am Vaishnavi Singh, BCA AI 1st year from Rana Public School, Shahjahanpur. I have completed 15 HTML assignments including portfolio with navigation, semantic tags, forms...">I am Vaishnavi Singh, BCA AI 1st Year. I have completed HTML assignments Q1 to Q17 covering semantic tags, forms, navigation, alt attributes. Seeking entry-level web developer role.</textarea><br><br>
+            </fieldset>
+
+            <br>
+
+            <!-- BUTTONS -->
+            <fieldset>
+                <legend>6. Form Buttons</legend>
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I agree to terms & I confirm I am Vaishnavi Singh, BCA AI student, contact 8127780277.</label><br><br>
+
+                <input type="submit" value="Submit Job Application">
+                <input type="reset" value="Reset Form">
+                <input type="button" value="Preview (button type)" onclick="alert('This is Vaishnavi Singh - Job Application Preview')">
+            </fieldset>
+
+            <!-- HIDDEN IMAGE SUBMIT TYPE EXAMPLE -->
+            <!-- <input type="image" src="submit.png" alt="Submit button image"> This is also an input type, but we use submit button normally -->
+
+        </form>
+    </main>
+
+    <footer>
+        <hr>
+        <h3>Every Input Type Used - Q17 Requirement Checklist (22 Types)</h3>
+        <ol>
+            <li>text, password, email, tel, url, search, hidden</li>
+            <li>number, range</li>
+            <li>date, month, week, time, datetime-local</li>
+            <li>color, file</li>
+            <li>radio, checkbox</li>
+            <li>submit, reset, button</li>
+            <li>Extra: select, textarea, datalist, output, fieldset, legend</li>
+        </ol>
+        <p><strong>Viva Tip:</strong> Teacher puchaega "every input type" to ye list dikha dena. Hidden field mein Application ID BCA-AI-VAISHNAVI-2026 hai.</p>
+        <p><a href="assignment16.html">Previous Q16 Student Form</a> | <a href="assignment15.html">Final Portfolio Q15</a></p>
+        <p><b>- Vaishnavi Singh | BCA AI | Shahjahanpur</b></p>
+    </footer>
+
+</body>
+</html>

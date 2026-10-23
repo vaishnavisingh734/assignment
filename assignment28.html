@@ -1,0 +1,195 @@
+Q28-Fix a supplied page where overflow is breaking the layout.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q28 - Fix Overflow Breaking Layout - Vaishnavi Singh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Inter:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary:#0F2C61; --accent:#FF6B35; --bg:#F8F9FA; }
+        body { font-family: Inter, sans-serif; background: var(--bg); margin:0; padding:20px; }
+        h1,h2,h3 { font-family: Poppins, sans-serif; color: var(--primary); }
+        .container { max-width: 1000px; margin: auto; }
+
+        .card { background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border:1px solid #e0e0e0; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media(max-width:700px){ .grid{ grid-template-columns:1fr; } }
+
+        /* ========== BROKEN VERSION ========== */
+        .broken-box {
+            width: 300px;
+            border: 2px solid red;
+            background: #ffebee;
+            padding: 10px;
+            /* NO FIX - So overflow will break */
+        }
+        .broken-img {
+            width: 500px; /* Bigger than parent - will overflow */
+        }
+
+        /* ========== FIXED VERSION ========== */
+        .fixed-box {
+            width: 300px;
+            max-width: 100%; /* Fix 1: Never exceed parent */
+            border: 2px solid green;
+            background: #e8f5e9;
+            padding: 10px;
+            box-sizing: border-box; /* Fix 2: Include padding in width */
+            overflow-wrap: break-word; /* Fix 3: Break long words */
+            word-break: break-word; /* Fix 3 alt */
+        }
+        .fixed-img {
+            max-width: 100%; /* Fix 4: Images responsive */
+            height: auto;
+            display: block;
+        }
+        .fixed-pre {
+            white-space: pre-wrap; /* Fix 5: Code blocks wrap */
+            word-wrap: break-word;
+            overflow-x: auto; /* Fix 6: Scroll if needed */
+            background: #212121;
+            color: #e0e0e0;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .badge-broken { background: #c62828; color:white; padding:3px 8px; border-radius:12px; font-size:11px; }
+        .badge-fixed { background: #2e7d32; color:white; padding:3px 8px; border-radius:12px; font-size:11px; }
+        code { background: #eee; padding:2px 5px; border-radius:3px; font-size:12px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Q28 - Fix Overflow Breaking Layout</h1>
+    <p><strong>Vaishnavi Singh | BCA AI | 8127780277 | Shahjahanpur</strong></p>
+
+    <div class="card" style="border-left:5px solid var(--accent);">
+        <h2>Problem: Overflow Kya Hai? (Viva Question)</h2>
+        <p>Overflow tab hota hai jab content apne parent box se bada ho jaye aur bahar nikal jaye. Isse horizontal scrollbar aata hai, layout toot jata hai, mobile me page kharab dikhta hai.</p>
+        <p><strong>4 Common Reasons:</strong> 1) Long unbreakable words/URLs, 2) Images with fixed width bigger than container, 3) Fixed width 500px on small screens, 4) No box-sizing: border-box</p>
+    </div>
+
+    <div class="grid">
+
+        <!-- LEFT - BROKEN -->
+        <div class="card" style="border:2px solid #ef9a9a;">
+            <h3><span class="badge-broken">BROKEN</span> Before Fix</h3>
+            <p style="font-size:12px; color:#c62828;">Ye wala layout todega - Horizontal scroll ayega</p>
+
+            <p><strong>Case 1: Long Word / URL</strong></p>
+            <div class="broken-box">
+                Contact: radha.singh.12345.radha.singh@gmail.com 
+                GitHubLink:https://github.com/vaishnavisingh734/assignment/assignment28.html-very-long-url-that-will-overflow
+            </div>
+            <p style="font-size:11px; color:#c62828;">↑ Ye text box se bahar nikal gaya - Overflow!</p>
+
+            <p><strong>Case 2: Large Image</strong></p>
+            <div class="broken-box">
+                <img src="image.png.png" alt="Vaishnavi Singh Broken Large Image Overflow" class="broken-img">
+            </div>
+            <p style="font-size:11px; color:#c62828;">↑ Image width 500px, parent 300px - Bahar nikal gayi</p>
+
+            <p><strong>Case 3: Fixed Width</strong></p>
+            <div class="broken-box" style="width:500px;">
+                I am fixed 500px wide - On mobile 320px screen, I will cause horizontal scroll - Breaking layout!
+            </div>
+
+            <div style="background:#ffebee; padding:8px; font-size:11px; margin-top:10px;">
+                <strong>Problems in this broken page:</strong><br>
+                ❌ width:500px fixed<br>
+                ❌ img width:500px fixed<br>
+                ❌ No overflow-wrap<br>
+                ❌ No box-sizing<br>
+                ❌ No max-width:100%
+            </div>
+        </div>
+
+        <!-- RIGHT - FIXED -->
+        <div class="card" style="border:2px solid #a5d6a7;">
+            <h3><span class="badge-fixed">FIXED</span> After Fix</h3>
+            <p style="font-size:12px; color:#2e7d32;">Ye wala sahi hai - No overflow, responsive</p>
+
+            <p><strong>Case 1: Long Word / URL Fixed</strong></p>
+            <div class="fixed-box">
+                Contact: radha.singh.12345.radha.singh@gmail.com 
+                GitHubLink:https://github.com/vaishnavisingh734/assignment/assignment28.html-very-long-url-that-will-now-wrap-correctly-because-of-overflow-wrap
+            </div>
+            <p style="font-size:11px; color:#2e7d32;">↑ Fixed with <code>overflow-wrap: break-word; word-break: break-word;</code></p>
+
+            <p><strong>Case 2: Large Image Fixed</strong></p>
+            <div class="fixed-box">
+                <img src="image.png.png" alt="Vaishnavi Singh Fixed Responsive Image No Overflow" class="fixed-img">
+            </div>
+            <p style="font-size:11px; color:#2e7d32;">↑ Fixed with <code>max-width:100%; height:auto;</code></p>
+
+            <p><strong>Case 3: Fixed Width Fixed</strong></p>
+            <div class="fixed-box" style="width:100%; max-width:500px;">
+                I am width:100% max-width:500px - On mobile I shrink to 100%, on desktop max 500px - Never breaks layout!
+            </div>
+
+            <div style="background:#e8f5e9; padding:8px; font-size:11px; margin-top:10px;">
+                <strong>Fixes Applied (Q28 Solution):</strong><br>
+                ✅ <code>max-width:100%</code> - Never exceed parent<br>
+                ✅ <code>box-sizing:border-box</code> - Padding included in width<br>
+                ✅ <code>overflow-wrap:break-word</code> - Break long words<br>
+                ✅ <code>img {max-width:100%; height:auto;}</code> - Responsive images<br>
+                ✅ <code>white-space:pre-wrap; overflow-x:auto</code> - Code blocks
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card">
+        <h2>Complete Fix Code - Copy This For Any Page</h2>
+        <div class="fixed-pre">
+/* Q28 - UNIVERSAL OVERFLOW FIX - Add this to every project */
+
+/* Fix 1: All elements include padding in width */
+* { box-sizing: border-box; }
+
+/* Fix 2: Body never overflow */
+body { overflow-x: hidden; }
+
+/* Fix 3: All images responsive */
+img { max-width: 100%; height: auto; display: block; }
+
+/* Fix 4: Long words break */
+p, a, div, span {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word; /* For long URLs like github.com/vaishnavisingh734 */
+}
+
+/* Fix 5: Code blocks scroll, not overflow */
+pre, code {
+  white-space: pre-wrap;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Fix 6: Containers use max-width not fixed width */
+.container {
+  width: 100%;
+  max-width: 1000px; /* Not fixed 1000px */
+  margin: auto;
+}
+        </div>
+        <p style="font-size:13px; margin-top:10px;"><strong>Vaishnavi Singh BCA AI - Applied all fixes to this Q28 page - 8127780277</strong></p>
+    </div>
+
+    <div class="card" style="background: var(--primary); color:white;">
+        <h2 style="color:white;">Q28 Viva - What did you fix?</h2>
+        <p style="color:#dbe2f0;">"Ma'am supplied page me 3 overflow problems the: 1) Mera long email aur GitHub URL break nahi ho raha tha - maine <code>overflow-wrap: break-word</code> lagaya. 2) Image 500px fixed thi jo mobile pe parent se bahar nikal rahi thi - maine <code>max-width:100%; height:auto;</code> kiya. 3) Boxes <code>width:500px</code> fixed the - maine <code>width:100%; max-width:500px; box-sizing:border-box;</code> kiya taaki mobile pe shrink ho jaye. Aur sabse important <code>*{box-sizing:border-box}</code> sab elements pe lagaya taaki padding width me include ho. Ab page responsive hai, koi horizontal scrollbar nahi."</p>
+        <p style="color:#ffcc80; font-size:12px; margin-top:10px;">Q28 Overflow Fix Complete - Vaishnavi Singh - BCA AI</p>
+        <p><a href="assignment27.html" style="color:#ffcc80;">← Q27 Cards</a> | <a href="assignment25.html" style="color:white;">Q25 Final →</a></p>
+    </div>
+
+</div>
+
+</body>
+</html>

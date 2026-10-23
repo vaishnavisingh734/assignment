@@ -1,0 +1,191 @@
+Q22-Style a page using at least four different selector types correctly.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vaishnavi Singh - BCA AI - 8127780277">
+    <title>Q22 - Four Selector Types - Vaishnavi Singh</title>
+
+    <style>
+        /* 1. UNIVERSAL SELECTOR (*) - Sab pe apply hota hai */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 2. ELEMENT SELECTOR (body, h1, p) - Tag name se select */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4ff;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        p {
+            color: #333;
+            margin: 10px 0;
+        }
+
+        /* 3. ID SELECTOR (#) - Ek hi element ke liye, # se start */
+        #header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        #footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        /* 4. CLASS SELECTOR (.) - Multiple elements ke liye, . se start */
+        .card {
+            background: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border-left: 5px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #856404;
+        }
+        .bca-student {
+            color: #1a5276;
+            font-weight: bold;
+        }
+
+        /* 5. ATTRIBUTE SELECTOR ([]) - Attribute ke basis par select */
+        input[type="text"] {
+            width: 90%;
+            padding: 8px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+        }
+        input[type="email"] {
+            width: 90%;
+            padding: 8px;
+            border: 2px solid #2ecc71;
+            border-radius: 5px;
+        }
+        a[href^="https"] {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        /* 6. PSEUDO-CLASS SELECTOR (:) - Hover, first-child etc */
+        a:hover {
+            background-color: #3498db;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            text-decoration: none;
+        }
+        li:first-child {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        li:last-child {
+            color: #c0392b;
+            font-style: italic;
+        }
+
+        /* 7. DESCENDANT / GROUPING SELECTOR */
+        .card h2 {
+            color: #2980b9;
+        }
+        h2, h3 {
+            margin: 10px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <h1 style="color:white; border:none;">Q22 - Four Selector Types Demo</h1>
+        <p style="color:#d6eaf8;">Vaishnavi Singh | BCA AI 1st Year | 8127780277 | Shahjahanpur</p>
+        <p style="color:#aed6f1;">This page uses 7 different selector types - More than required 4</p>
+    </div>
+
+    <div class="card">
+        <h2>1. Universal Selector (*) - Line 9</h2>
+        <p><code>* { margin:0; padding:0; }</code> - Ye sab elements par apply hota hai. Har browser ka default margin hata deta hai.</p>
+    </div>
+
+    <div class="card">
+        <h2>2. Element Selector (h1, p, body) - Line 15-28</h2>
+        <p>Ye tag name se select karta hai. Example: <code>body</code>, <code>h1</code>, <code>p</code> - Pure page ke sabhi h1 blue ho gaye.</p>
+        <p class="bca-student">I am Vaishnavi Singh - BCA AI Student (This uses CLASS selector)</p>
+    </div>
+
+    <div class="card">
+        <h2>3. ID Selector (#header, #footer) - Line 31-43</h2>
+        <p><code>#header { ... }</code> - ID unique hota hai, # se start hota hai. Ek page me ek ID ek hi baar use hoti hai. Upar ka dark header #header se bana hai.</p>
+        <p class="highlight">ID = #header | Class = .card | Element = p | Attribute = input[type="text"]</p>
+    </div>
+
+    <div class="card">
+        <h2>4. Class Selector (.card, .highlight) - Line 46-63</h2>
+        <p><code>.card { ... }</code> - Dot se start hota hai. Ek class multiple jagah use ho sakti hai. Ye saare white boxes .card class se bane hain.</p>
+        <span class="highlight">Ye .highlight class ka example hai</span>
+    </div>
+
+    <div class="card">
+        <h2>5. Attribute Selector - Line 66-79</h2>
+        <p><code>input[type="text"] { ... }</code> - Attribute ke value se select karta hai.</p>
+        
+        <label>Text Input (blue border - attribute selector):</label><br>
+        <input type="text" value="Vaishnavi Singh"><br><br>
+        
+        <label>Email Input (green border - attribute selector):</label><br>
+        <input type="email" value="radha.singh.12345.radha.singh@gmail.com"><br><br>
+
+        <p>External Link Example: <a href="https://github.com/vaishnavisingh734/assignment">My GitHub (Red because href^="https")</a></p>
+    </div>
+
+    <div class="card">
+        <h2>6. Pseudo-class Selector (:hover, :first-child) - Line 82-93</h2>
+        <p>Mouse hover par effect ya first/last child select karna.</p>
+        <ul>
+            <li>First Item - Green & Bold (li:first-child)</li>
+            <li>Second Item - Normal</li>
+            <li>Third Item - Normal</li>
+            <li>Last Item - Red & Italic (li:last-child)</li>
+        </ul>
+        <p>Link par mouse le jao: <a href="assignment21.html">Hover on me (Q21)</a> | <a href="assignment20.html">Hover on me (Q20)</a></p>
+    </div>
+
+    <div class="card">
+        <h2>7. Grouping & Descendant Selector - Line 96-100</h2>
+        <p><code>.card h2 { color: #2980b9; }</code> - Card ke andar wale h2 blue hain.</p>
+        <p><code>h2, h3 { margin:10px 0; }</code> - Grouping - dono par same style.</p>
+        <h3>This H3 is example of grouping selector</h3>
+    </div>
+
+    <div id="footer">
+        <h3 style="color:white;">Summary for Viva - Q22</h3>
+        <p style="color:white;">7 Selector Types Used in This Page:</p>
+        <p style="color:#d5f5e3;">1. Universal (*) | 2. Element (h1,p) | 3. ID (#header) | 4. Class (.card) | 5. Attribute ([type="text"]) | 6. Pseudo-class (:hover) | 7. Descendant (.card h2)</p>
+        <p style="color:white;">Requirement was 4, I used 7 - Vaishnavi Singh - BCA AI - 8127780277</p>
+        <p><a href="#top" style="color:#1abc9c;">Back to Top ↑</a></p>
+    </div>
+
+</body>
+</html>
